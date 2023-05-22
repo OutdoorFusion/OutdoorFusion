@@ -1,51 +1,3 @@
-
-
-# import pandas as pd
-# from flask import Flask, render_template, jsonify
-# import plotly.express as px
-
-# # Load CSV file
-# data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-# # data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-
-# # Create Flask app
-# app = Flask(__name__)
-
-# # Create a route for the dashboard
-# @app.route('/')
-# def dashboard():
-#     return render_template('dashboard.html')
-
-# # Create a route for the scatter plot
-# @app.route('/plot')
-# def plot():
-#     fig = px.scatter(data, x='Year', y='Revenue')
-#     graphJSON = fig.to_json()
-#     return graphJSON
-
-# # Create a route for customer data
-# @app.route('/customer_data')
-# def customer_data():
-#     customer_age = data['Customer_Age'].mean()
-#     country = data['Country'].value_counts().idxmax()
-#     return jsonify(customer_age=customer_age, country=country)
-
-# @app.route('/pie')
-# def pie():
-#     df = data.groupby('Year')['Revenue'].sum().reset_index()
-#     fig = px.pie(df, values='Revenue', names='Year')
-#     graphJSON = fig.to_json()
-#     return graphJSON
-
-# @app.route('/adventureworks')
-# def subpage():
-#     return render_template('adventureworks.html')
-
-# # Run the app
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
 import pandas as pd
 from flask import Flask, render_template, jsonify, request
 import plotly.express as px
@@ -135,8 +87,12 @@ def tables():
 
 
 @app.route('/adventureworks')
-def subpage():
+def adventureworks():
     return render_template('adventureworks.html')
+
+@app.route('/verkoopprestaties')
+def verkoopprestaties():
+    return render_template('verkoopprestaties.html')
 
 # Run the app
 if __name__ == '__main__':
