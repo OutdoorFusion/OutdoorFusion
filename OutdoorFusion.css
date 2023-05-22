@@ -1,0 +1,289 @@
+body {
+    background-color: white;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      width: 100%;
+      height: 100%;
+    /* moet later zwart */
+  
+    background: black;
+  
+  }
+  
+  
+  #Menubalk {
+    position: fixed;
+    border: thin solid black;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 75px;
+    text-align: justify;
+    background-color: #ac1923;
+    word-wrap: break-word; /* words won't go from the boundry */
+  
+    padding: 10px 20px 30px;
+    float: left;
+    z-index: 110;
+  }
+  
+  #Menubalk div {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+  #Menubalk div a{
+    color: white;
+    margin-top: 10px;
+  }
+  
+  #Menubalk a img {
+    height: 75px;
+    width: 75px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .NavButton {
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+  
+  .nav {
+    font-size: 32px;
+    text-decoration: none;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+  }
+  
+  #EngeVideo {
+    width: 90%;
+    margin: auto;
+    padding-top: 150px;
+  }
+  #EngeVideo video {
+    width: 100%;
+    margin: auto;
+  }
+  
+  .bestelText{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    background-color: orange;
+    color: white;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .content{
+    padding-top: 125px;
+  }
+  
+  .overOnsContent{
+    width: 50%;
+    margin: auto;
+  }
+  
+  .OverOnsInfo header h1{
+    font-size: 32px;
+    background-color: white;
+    text-align: center;
+  }
+  
+  .OverOnsInfo p{
+    font-size: 32px;
+  }
+  
+  .OverOnsInfo{
+    width: 90%;
+    display: flex;
+    margin: auto;
+    margin-top: 40px;
+    padding-bottom: 100px;
+  }
+  
+  .OverOnsInfo header{
+    height: fit-content;
+    width: 45%;
+    background-color: #ac1923;
+  }
+  
+  .OverOnsInfo img{
+    height: 450px;
+    margin-left: auto;
+    margin-right: 50px;
+  }
+  
+  .infoblok{
+    width: 90%;
+    margin: auto;
+    background-color: #ac1923;
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
+    font-size: 42px;
+    color: white;
+    
+  }
+  
+  .OverOnsInfo img{
+    width: 450px;
+    height: 650px;
+  
+    aspect-ratio: 9/16;
+  }
+  
+  .infoblok img{
+    height: 350px;
+    margin-left: auto;
+    margin-right: 25px;
+    width: 550px;
+  }
+  
+  .infoblok h2{
+    margin-left: 25px;
+    
+  }
+  
+  .bestelText h1{
+    width: fit-content;
+    font-size: 69px;
+    text-align: center;
+    margin: auto;
+  }
+  
+  
+  #Informatieblokken {
+    border: red;
+    font-family: "Arial, Helvetica, sans-serif";
+    width: 500px;
+    height: 550px;
+    text-align: justify;
+    background-color: #ac1923;
+    word-wrap: break-word; /* words won't go from the boundry */
+    margin: 10px 10px auto;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000; /*outlined tekst*/
+  
+    padding: 10px 20px 30px;
+    float: left;
+  }
+  
+  #Pompoenplaatje {
+  }
+  
+  .ticketContent{
+    background-color: white;
+    width: 70%;
+    margin: auto;
+    padding-top: 150px;
+  }
+  #Zandloper{
+    display: flex;
+    width: 70%;
+    margin: auto;
+    color: white;
+    flex-direction: column;
+    
+  }
+  
+  .buttonWrapper{
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+  }
+  
+  .left{
+    width: 50%;
+  }
+  
+  .right{
+    width: 50%;
+  }
+  
+  .ticketsTitle{
+    background-color: #ac1923;
+    font-size: 48px;
+    padding-left: 25px;
+    color: white
+  }
+  
+  
+  .labels{
+    display: flex;
+    gap: 25px;
+  }
+  
+  .labels *{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+    height: 50px;
+  }
+  
+  .leeftijdTitle{
+    width: 40%;
+  }
+  
+  .ticketObject{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .ticketButtons{
+    width: 60%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .countLabel{
+    height: 72px;
+    width: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    background: white;
+  }
+  
+  .totaalLabel{
+    height: 72px;
+    margin: auto;
+    margin-top: 10px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+  }
+  
+  .buttonWrapper{
+    margin-top: 25px;
+  }
+  
+  .aantalTitle{
+    width: 22%;
+  }

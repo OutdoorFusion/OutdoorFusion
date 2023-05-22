@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/OutdoorFusion.css" />
+    <title>OutdoorFusion Dashboard</title>
+    <div id="Menubalk">
+    </div>
+    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
+    <a href="http://127.0.0.1:5000/adventureworks"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar AdventurWorks" /></a>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+        <label for="fileType">File Type:</label>
+        <select id="fileType">
+            <option value="csv">CSV</option>
+            <option value="accessdb">Access Database</option>
+        </select>
+        <label for="tableName">Table Name:</label>
+        <select id="tableName"></select>
+        <label for="fieldA">Field A:</label>
+        <select id="fieldA" name="fieldA"></select>
+        <label for="fieldB">Field B:</label>
+        <select id="fieldB" name="fieldB"></select>
+    </div>
+    <div id="visualization-options">
+    <label for="chart-type">Visualization Type:</label>
+    <select id="chart-type">
+        <option value="pie">Pie Chart</option>
+        <option value="bar">Bar Diagram</option>
+        <option value="generatePlot">Generate Plot</option>
+        <option value="scatter">Scatter Plot</option>
+    </select>
+    <button id="generate-btn">Generate</button>
+</div>
+
+<div id="plot"></div>
+<div id="customer-data"></div>
+<div id="revenues-by-year"></div>
+
+<script>
+    function generatePlot() {
+        var fieldA = document.getElementById('fieldA').value;
+        var fieldB = document.getElementById('fieldB').value;
+        var url = '';
+
+        if (document.getElementById('fileType').value === 'csv') {
+            url = '/plot?field_a=' + fieldA + '&field_b=' + fieldB;
+        } else {
+            var tableName = document.getElementById('tableName').value;
+            url = '/plot?file_type=accessdb&table_name=' + tableName + '&field_a=' + fieldA + '&field_b=' + fieldB;
+        }
+
+        Plotly.d3.json(url, function(error, data) {
+            if (error) {
+                console.log(error);
+            }
+            Plotly.newPlot('plot', data.data, data.layout);
+        });
+    }
+
+    
+            function generateVisualization() {
+                var chartType = document.getElementById('chart-type').value;
+    
+                if (chartType === 'generatePlot') {
+                    generatePlot();
+                    return;
+                }
+    
+                // Make a request to the appropriate route based on the selected chart type
+                var url = '/chart?type=' + chartType;
+                if (chartType === 'scatter') {
+                    var fieldA = document.getElementById('fieldA').value;
+                    var fieldB = document.getElementById('fieldB').value;
+                    url += '&field_a=' + fieldA + '&field_b=' + fieldB;
+                } else if (chartType === 'pie') {
+                    var fieldA = document.getElementById('fieldA').value;
+                    url += '&field_a=' + fieldA;
+                } else if (chartType === 'bar') {
+                    var fieldA = document.getElementById('fieldA').value;
+                    url += '&field_a=' + fieldA;
+                }
+    
+                Plotly.d3.json(url, function(error, data) {
+                    if (error) {
+                        console.log(error);
+                    }
+    
+                    if (chartType === 'scatter') {
+                        Plotly.newPlot('plot', data.data, data.layout);
+                    } else if (chartType === 'pie')
+                    {
+                        var pieData = [{
+                            values: data.data[0].values,
+                            labels: data.data[0].labels,
+                            type: 'pie'
+                        }];
+                        var pieLayout = {
+                            title: ''
+                        };
+                        Plotly.newPlot('plot', pieData, pieLayout);
+                    } else if (chartType === 'bar') {
+                        var barData = [{
+                            x: data.data[0].x,
+                            y: data.data[0].y,
+                            type: 'bar'
+                        }];
+                        var barLayout = {
+                            title: ' '
+                        };
+                        Plotly.newPlot('plot', barData, barLayout);
+                    }
+                });
+            }
+
+            function fetchTableOptions() {
+                // Make a request to fetch the table options from the backend
+                Plotly.d3.json('/tables', function(error, data) {
+                    if (error) {
+                        console.log(error);
+                        return;
+                    }
+
+                    var tableOptions = data.tables; // Assuming the response contains an array of table names
+
+                    // Populate the fieldA and fieldB select elements with the table options
+                    var fieldASelect = document.getElementById('fieldA');
+                    var fieldBSelect = document.getElementById('fieldB');
+
+                    tableOptions.forEach(function(option) {
+                        var optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.text = option;
+                        fieldASelect.appendChild(optionElement);
+
+                        optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.text = option;
+                        fieldBSelect.appendChild(optionElement);
+                    });
+                });
+            }
+
+            // Call the fetchTableOptions function to populate the select elements on page load
+            fetchTableOptions();
+
+            // Add event listener to the generate button for the plot
+            document.getElementById('generate-btn').addEventListener('click', generateVisualization);
+        </script>
+    </body>
+</html>
