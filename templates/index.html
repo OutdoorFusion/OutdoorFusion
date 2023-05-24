@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutdoorFusion</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/indexStyle.css') }}">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="img/logo_header.png" alt="Logo">
+            <img src="{{ url_for('static', filename='Afbeeldingen/logo_header.png') }}" alt="Logo">
             <h1 class="logoText">OutdoorFusion</h1>
         </div>
         <nav class="upperNav">
