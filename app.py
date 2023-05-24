@@ -1,6 +1,8 @@
 import pandas as pd
 from flask import Flask, render_template, jsonify, request
 import plotly.express as px
+import numpy as np
+
 
 # Load CSV file
 data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
@@ -53,6 +55,29 @@ def customer_data():
     
     return jsonify(value_a=value_a, value_b=value_b)
 
+@app.route('/chartVerkoopPrestaties') 
+def chartVerkoopPrestaties():
+    selected_product = request.args.get('product')
+
+    # Filter the data based on the selected product
+    product_data = data[data['Product'] == selected_product]
+
+    # Check if product data exists
+    if product_data.empty:
+        return jsonify(error='Selected product not found')
+
+    # Prepare the data for the bar chart
+    variables = ['Unit_Cost', 'Unit_Price', 'winst', 'Profit', 'Order_Quantity', 'Revenue']
+    labels = ['Unit Cost', 'Unit Price', 'Unit Price / Unit Cost', 'Profit', 'Order Quantity', 'Revenue']
+    values = product_data[variables].iloc[0].tolist()
+
+    # Create a bar chart using Plotly Express
+    fig = px.bar(x=labels, y=values, labels={'x': 'Variable', 'y': 'Value'}, title=f'Product Data for {selected_product}')
+
+    # Convert the figure to JSON format
+    graphJSON = fig.to_json()
+
+    return graphJSON    
 
 # Create a route for generating different types of charts
 @app.route('/chart')
@@ -79,11 +104,50 @@ def chart():
         return jsonify(error='Invalid chart type or field A')
 
 # Create a route to retrieve table options
-@app.route('/tables')
+
+
+@app.route('/chartMonthlyPerformance')
+def chartMonthlyPerformance():
+    selected_product = request.args.get('product')
+
+    # Filter the data based on the selected product
+    product_data = data[data['Product'] == selected_product]
+
+    # Check if product data exists
+    if product_data.empty:
+        return jsonify(error='Selected product not found')
+
+    # Prepare the data for the line graph
+    variables = ['Unit_Cost', 'Unit_Price', 'Profit', 'Order_Quantity', 'Revenue']
+    chart_data = []
+
+    for variable in variables:
+        changes = product_data.groupby('Month')[variable].diff().fillna(0).tolist()
+        months = product_data['Month'].tolist()
+        chart_item = {
+            'variable': variable,
+            'months': months,
+            'changes': changes
+        }
+        chart_data.append(chart_item)
+
+    return jsonify(chartData=chart_data)
+
+
+
+@app.route('/tablesVerkoopPrestaties') #table van verkoop prestaties is anders dan die van dashboard
+def tablesVerkoopPrestaties():
+    table_optionsVerkoopPrestatietables = data['Product'].unique().tolist()  # Get unique products from "Product" column
+    
+    return jsonify(tablesVerkoopPrestatie=table_optionsVerkoopPrestatietables)
+
+
+@app.route('/tables') #table van dashboard. Anders dan die van VerkoopPrestaties
 def tables():
     table_options = data.columns.tolist()  # Assuming each column represents a table
     
     return jsonify(tables=table_options)
+
 
 
 @app.route('/adventureworks')
@@ -93,6 +157,32 @@ def adventureworks():
 @app.route('/verkoopprestaties')
 def verkoopprestaties():
     return render_template('verkoopprestaties.html')
+
+@app.route('/product_data')
+def product_data():
+    selected_product = request.args.get('product')
+
+    # Filter the data based on the selected product
+    product_data = data[data['Product'] == selected_product]
+
+    # Prepare the data for the selected product
+    product_info = {
+        'unitCost': int(product_data['Unit_Cost'].iloc[0]),
+        'unitPrice': int(product_data['Unit_Price'].iloc[0]),
+        'winst': float(product_data['Unit_Price'].iloc[0]) / float(product_data['Unit_Cost'].iloc[0]),
+        'profit': int(product_data['Profit'].iloc[0]),
+        'quantity': int(product_data['Order_Quantity'].iloc[0]),
+        'revenue': int(product_data['Revenue'].iloc[0])
+    }
+
+
+
+    # Prepare the response data
+    response_data = {
+        'productInfo': product_info
+    }
+
+    return jsonify(response_data)
 
 # Run the app
 if __name__ == '__main__':

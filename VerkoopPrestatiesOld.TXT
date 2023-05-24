@@ -52,32 +52,29 @@
                         <p>Revenue: ${productInfo.revenue}</p>
                     `);
 
-                    // Make an AJAX request to retrieve the line graph data
-                    $.getJSON('/chartMonthlyPerformance', { product: selectedProduct }, function(chartData) {
-                        // Prepare the data for the line graph
-                        var data = [];
-                        $.each(chartData.chartData, function(index, item) {
-                            var trace = {
-                                x: item.months.slice(1),
-                                y: item.changes,
-                                mode: 'lines',
-                                name: item.variable
-                            };
-                            data.push(trace);
-                        });
+                    // Make an AJAX request to retrieve the bar chart data
+                    $.getJSON('/chartVerkoopPrestaties', { type: 'bar', field_a: 'month', field_b: 'difference' }, function(chartData) {
+                        var chartJSON = chartData;
 
-                        // Set the layout for the line graph
+                        // Prepare the data for the bar chart
+                        var data = [{
+                            x: chartJSON.months,
+                            y: chartJSON.differences,
+                            type: 'bar'
+                        }];
+
+                        // Set the layout for the bar chart
                         var layout = {
-                            title: `Monthly Performance for ${selectedProduct}`,
+                            title: 'Product Data Difference by Month',
                             xaxis: {
                                 title: 'Month'
                             },
                             yaxis: {
-                                title: 'Change'
+                                title: 'Difference'
                             }
                         };
 
-                        // Render the line graph using Plotly
+                        // Render the bar chart using Plotly
                         Plotly.newPlot('chartContainer', data, layout);
                     });
                 });
