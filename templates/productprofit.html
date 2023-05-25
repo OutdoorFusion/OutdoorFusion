@@ -11,12 +11,13 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <div id="plot"></div>
+    <!-- <div id="plot"></div> -->
     <div id="linePlot"></div>
     <div id="top10Products"></div>
     <div id="top10Categories"></div>
     <div id="productProfitChart"></div>
-    <div id="omzetByCategory"></div> <!-- Add a new div for the new chart -->
+    <div id="omzetByCategory"></div>
+    <div id="quantityByCategory"></div>
 
     <script>
         function generateVisualization() {
@@ -24,24 +25,26 @@
             var lineUrl = '/chartProductProfitLine?type=line&field_a=product';
             var top10Url = '/top10Products';
             var top10CategoriesUrl = '/top10ProductCategories';
-            var omzetByCategoryUrl = '/chartOmzetByCategory'; 
-            // Plotly.d3.json(barUrl, function(error, data) {
-            //     if (error) {
-            //         console.log(error);
-            //     }
+            var omzetByCategoryUrl = '/chartOmzetByCategory';
+            var quantityByCategoryUrl = '/chartQuantityByCategory'; // New URL for the new chart
+            
+            Plotly.d3.json(barUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
 
-            //     var barData = [{
-            //         x: data.data[0].x,
-            //         y: data.data[0].y,
-            //         type: 'bar'
-            //     }];
-            //     var barLayout = {
-            //         title: data.layout.title,
-            //         xaxis: data.layout.xaxis,
-            //         yaxis: data.layout.yaxis
-            //     };
-            //     Plotly.newPlot('plot', barData, barLayout);
-            // });
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('plot', barData, barLayout);
+            });
 
             Plotly.d3.json(lineUrl, function(error, data) {
                 if (error) {
@@ -114,10 +117,27 @@
                 };
                 Plotly.newPlot('omzetByCategory', barData, barLayout);
             });
+
+            Plotly.d3.json(quantityByCategoryUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('quantityByCategory', barData, barLayout);
+            });
         }
 
         generateVisualization();
     </script>
 </body>
-
 </html>

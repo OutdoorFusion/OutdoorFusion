@@ -4,7 +4,6 @@ import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
 
-
 # Load CSV file
 data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 # data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
@@ -35,7 +34,31 @@ def plot():
 
 
 # Load CSV file
+@app.route('/chartQuantityByCategory')
+def chart_quantity_by_category():
+    OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    category_quantity = OrderDetailsData.groupby('CategoryName')['Quantity'].sum().reset_index()
 
+    # Sort by 'Quantity' in descending order
+    category_quantity = category_quantity.sort_values('Quantity', ascending=False)
+
+    # Create bar graph data
+    chart_data = go.Bar(
+        x=category_quantity['CategoryName'],
+        y=category_quantity['Quantity']
+    )
+
+    # Create bar graph layout
+    chart_layout = go.Layout(
+        title='Welke producten worden het meest verkocht',
+        xaxis={'title': 'Category'},
+        yaxis={'title': 'Quantity'}
+    )
+
+    # Create figure
+    figure = go.Figure(data=[chart_data], layout=chart_layout)
+
+    return figure.to_json()
 
 
 @app.route('/chartOmzetByCategory')
@@ -55,7 +78,7 @@ def chart_omzet_by_category():
 
     # Create bar graph layout
     chart_layout = go.Layout(
-        title='Categories by Omzet',
+        title='Welke categorieën leveren de meeste omzet',
         xaxis={'title': 'Category'},
         yaxis={'title': 'Omzet'}
     )
@@ -120,27 +143,6 @@ def chart_omzet_by_category():
 #     return graphJSON
 
 
-# Volgens mij is dit oud maar ik durf het niet zeker te zeggen
-# @app.route('/customer_data')
-# def customer_data():
-#     field_a = request.args.get('field_a')
-#     field_b = request.args.get('field_b')
-    
-#     if field_a == 'customer_age':
-#         value_a = data['Customer_Age'].mean()
-#     elif field_a == 'country':
-#         value_a = data['Country'].value_counts().idxmax()
-#     else:
-#         return jsonify(error='Invalid field A')
-    
-#     if field_b == 'customer_age':
-#         value_b = data['Customer_Age'].mean()
-#     elif field_b == 'country':
-#         value_b = data['Country'].value_counts().idxmax()
-#     else:
-#         return jsonify(error='Invalid field B')
-    
-#     return jsonify(value_a=value_a, value_b=value_b)
 
 @app.route('/chartVerkoopPrestaties') 
 def chartVerkoopPrestaties():
@@ -230,7 +232,7 @@ def top10Products():
     df = df.nlargest(10, 'Revenue')
 
     fig = px.bar(df, x='Product', y='Revenue',
-                 title='Top 10 Products by Revenue',
+                 title='Top 10 producten kwa opbrengsten',
                  labels={'Product': 'Product', 'Revenue': 'Total Revenue'})
 
     graphJSON = fig.to_json()
@@ -238,11 +240,11 @@ def top10Products():
 
 @app.route('/top10ProductCategories')
 def top10ProductCategories():
-    df = data.groupby('Product_Category')['Revenue'].sum().reset_index()
+    df = data.groupby('Sub_Category')['Revenue'].sum().reset_index()
     df = df.nlargest(10, 'Revenue')
 
-    fig = px.pie(df, values='Revenue', names='Product_Category',
-                 title='Top 3 Product Categories by Revenue')
+    fig = px.pie(df, values='Revenue', names='Sub_Category',
+                 title='Top 10 Product Categories by Revenue')
 
     graphJSON = fig.to_json()
     return graphJSON
@@ -275,7 +277,7 @@ def chartProductProfitLine():         #TODO Verwerk ook Northwind.
             product_data = data.groupby(['Product', pd.Grouper(key='Date', freq='M')])['Profit'].sum().reset_index()
 
             fig = px.line(product_data, x='Date', y='Profit', color='Product',
-                          title='Total Profit per Month for Each Product',
+                          title='Totale winst over alle producten per maand',
                           labels={'Date': 'Date', 'Profit': 'Profit', 'Product': 'Product'})
     else:
         df = data.groupby(field_a)['Revenue'].sum().reset_index()
@@ -346,7 +348,9 @@ def product_data():
     'winst': float(product_data['Unit_Price'].iloc[0]) / float(product_data['Unit_Cost'].iloc[0]),
     'profit': int(product_data['Profit'].iloc[0]),
     'quantity': int(product_data['Order_Quantity'].iloc[0]),
+    'Sub_Category': int(product_data['Sub_Category'].iloc[0]),
     'revenue': int(product_data['Revenue'].iloc[0]),
+
     # 'date': product_data['Date'].iloc[0].strftime('%Y-%m-%d'),  #TODO sloopt op dit moment de 'Productinzien' pagina
     # 'Product_Category': product_data['Product_Category'].iloc[0]
 }
