@@ -76,3 +76,44 @@ footer > nav {
     flex-direction: column;
     gap: 10px;
 }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.container {
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.card {
+    padding: 16px;
+    margin: 16px;
+}
+
+.card_content, .card_header {
+    border: 1px solid #eee;
+    box-shadow: 2px 4px 16px rgba(0,0,0,.06);
+    border-radius: 4px;
+}
+
+.card_header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 300px;
+    height: 75px;
+    margin-bottom: 20px;
+}
+
+.card_content {
+    display: flex;
+    width: 300px;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+}

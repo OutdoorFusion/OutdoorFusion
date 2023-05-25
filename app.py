@@ -64,8 +64,12 @@ app = Flask(__name__)
 
 # Create a route for the dashboard
 @app.route('/')
-def dashboard():
+def dash():
     return render_template('index.html')
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 # Create a route for the scatter plot
 @app.route('/plot')
