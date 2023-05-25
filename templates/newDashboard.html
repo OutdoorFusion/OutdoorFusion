@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutdoorFusion Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="INDEX.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/index.css') }}" />
     </link>
 </head>
 
@@ -17,22 +17,22 @@
 
     <div class="graphContainer">
         <div>
-            <img class="graphImage" src="./assets/customers_per_regio.png" />
+            <img class="graphImage" src="{{ url_for('static', filename='afbeeldingen/customers_per_regio.png') }}" />
             <p>Klanten per Regio</p>
         </div>
         <div>
-            <img class="graphImage" src="./assets/Gender_Van_Customers.png" />
+            <img class="graphImage" src="{{ url_for('static', filename='afbeeldingen/Gender_Van_Customers.png') }}" />
             <p>Percentage Man en Vrouw</p>
         </div>
     </div>
 
     <div class="graphContainer">
         <div>
-            <img class="graphImage" src="./assets/Leeftijd_Van_Customers.png" />
+            <img class="graphImage" src="{{ url_for('static', filename='afbeeldingen/Leeftijd_Van_Customers.png') }}" />
             <p>Leeftijd van Klanten</p>
         </div>
         <div>
-            <img class="graphImage" src="./assets/Nieuwe_Customers_Per_Jaar.png" />
+            <img class="graphImage" src="{{ url_for('static', filename='afbeeldingen/Nieuwe_Customers_Per_Jaar.png') }}" />
             <p>Nieuwe Klanten per Jaar</p>
         </div>
     </div>
