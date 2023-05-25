@@ -26,9 +26,11 @@
     <main>
         <div class="container">
             <div class="card">
-                <div class="card_header"><h2>link naar pagina 1</h2></div>
+                <div class="card_header"><h2>Ga naar het dashboard</h2></div>
                 <div class="card_content">
-                    <a href="{{ url_for('dashboard') }}">dashboard</a>
+                    <a href="{{ url_for('dashboard') }}">
+                        <img src="{{ url_for('static', filename='afbeeldingen/dashboard_image.jpg') }}" style="height: 250px;" alt="Dashboard Image">
+                    </a>
                 </div>
             </div>
             <div class="card">
