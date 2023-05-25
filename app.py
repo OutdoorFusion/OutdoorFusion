@@ -49,16 +49,25 @@
 import pandas as pd
 from flask import Flask, render_template, jsonify, request
 import plotly.express as px
+import os
 
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
 # Load CSV file
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-# data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+data = pd.read_csv(file_path)
+
 
 # Create Flask app
 app = Flask(__name__)
 
 # Create a route for the dashboard
 @app.route('/')
+def dash():
+    return render_template('index.html')
+
+@app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
 
