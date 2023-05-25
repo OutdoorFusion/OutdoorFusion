@@ -2,11 +2,14 @@
 <html>
 <head>
     <title>Verkoopprestaties</title>
+    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
+    <a href="http://127.0.0.1:5000/verkoopprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Verkoopprestaties" /></a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Verkoopprestaties</h1>
+        
 
     <select id="productSelect">
         <option value="" disabled selected>Select a product</option>
@@ -52,29 +55,32 @@
                         <p>Revenue: ${productInfo.revenue}</p>
                     `);
 
-                    // Make an AJAX request to retrieve the bar chart data
-                    $.getJSON('/chartVerkoopPrestaties', { type: 'bar', field_a: 'month', field_b: 'difference' }, function(chartData) {
-                        var chartJSON = chartData;
+                    // Make an AJAX request to retrieve the line graph data
+                    $.getJSON('/chartMonthlyPerformance', { product: selectedProduct }, function(chartData) {
+                        // Prepare the data for the line graph
+                        var data = [];
+                        $.each(chartData.chartData, function(index, item) {
+                            var trace = {
+                                x: item.months.slice(1),
+                                y: item.changes,
+                                mode: 'lines',
+                                name: item.variable
+                            };
+                            data.push(trace);
+                        });
 
-                        // Prepare the data for the bar chart
-                        var data = [{
-                            x: chartJSON.months,
-                            y: chartJSON.differences,
-                            type: 'bar'
-                        }];
-
-                        // Set the layout for the bar chart
+                        // Set the layout for the line graph
                         var layout = {
-                            title: 'Product Data Difference by Month',
+                            title: `Monthly Performance for ${selectedProduct}`,
                             xaxis: {
                                 title: 'Month'
                             },
                             yaxis: {
-                                title: 'Difference'
+                                title: 'Change'
                             }
                         };
 
-                        // Render the bar chart using Plotly
+                        // Render the line graph using Plotly
                         Plotly.newPlot('chartContainer', data, layout);
                     });
                 });

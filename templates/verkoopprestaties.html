@@ -2,87 +2,17 @@
 <html>
 <head>
     <title>Verkoopprestaties</title>
+    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Verkoopprestaties</h1>
+    <a href="http://127.0.0.1:5000/productprofit"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Product Profit" /></a>
+    <a href="http://127.0.0.1:5000/productinzien"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Product Inzien" /></a>
+    <a href="http://127.0.0.1:5000/northwindprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Northwindprestaties" /></a>
+    <a href="http://127.0.0.1:5000/bikestoreprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar bikestoreprestaties" /></a>
 
-    <select id="productSelect">
-        <option value="" disabled selected>Select a product</option>
-        <!-- Options will be added dynamically using JavaScript -->
-    </select>
 
-    <div id="productInfoContainer">
-        <!-- Product information will be displayed here -->
-    </div>
-
-    <div id="chartContainer">
-        <!-- Chart will be displayed here -->
-    </div>
-
-    <script>
-        $(document).ready(function() {
-            // Make an AJAX request to retrieve the product options
-            $.getJSON('/tablesVerkoopPrestaties', function(data) {
-                var productOptions = data.tablesVerkoopPrestatie;
-
-                // Update the select element with product options
-                var select = $('#productSelect');
-                $.each(productOptions, function(index, option) {
-                    select.append($('<option></option>').attr('value', option).text(option));
-                });
-            });
-
-            // Handle select change event
-            $('#productSelect').on('change', function() {
-                var selectedProduct = $(this).val();
-
-                // Make an AJAX request to retrieve product information
-                $.getJSON('/product_data', { product: selectedProduct }, function(response) {
-                    var productInfo = response.productInfo;
-
-                    // Update the product information container
-                    $('#productInfoContainer').html(`
-                        <h2>${selectedProduct}</h2>
-                        <p>Unit Cost: ${productInfo.unitCost}</p>
-                        <p>Unit Price: ${productInfo.unitPrice}</p>
-                        <p>Profit: ${productInfo.profit}</p>
-                        <p>Quantity: ${productInfo.quantity}</p>
-                        <p>Revenue: ${productInfo.revenue}</p>
-                    `);
-
-                    // Make an AJAX request to retrieve the line graph data
-                    $.getJSON('/chartMonthlyPerformance', { product: selectedProduct }, function(chartData) {
-                        // Prepare the data for the line graph
-                        var data = [];
-                        $.each(chartData.chartData, function(index, item) {
-                            var trace = {
-                                x: item.months.slice(1),
-                                y: item.changes,
-                                mode: 'lines',
-                                name: item.variable
-                            };
-                            data.push(trace);
-                        });
-
-                        // Set the layout for the line graph
-                        var layout = {
-                            title: `Monthly Performance for ${selectedProduct}`,
-                            xaxis: {
-                                title: 'Month'
-                            },
-                            yaxis: {
-                                title: 'Change'
-                            }
-                        };
-
-                        // Render the line graph using Plotly
-                        Plotly.newPlot('chartContainer', data, layout);
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>

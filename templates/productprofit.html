@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/OutdoorFusion.css" />
+    <title>AdventureWorks Dashboard</title>
+    <div id="Menubalk">
+    </div>
+    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
+    <a href="http://127.0.0.1:5000/adventureworks"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar AdventurWorks" /></a>
+    <a href="http://127.0.0.1:5000/verkoopprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Verkoopprestaties" /></a>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+    <div id="linePlot"></div>
+    <div id="top10Products"></div>
+    <div id="top10Categories"></div>
+    <div id="productProfitChart"></div>
+    <div id="omzetByCategory"></div> <!-- Add a new div for the new chart -->
+
+    <script>
+        function generateVisualization() {
+            var barUrl = '/chartProductProfit?type=bar&field_a=product';
+            var lineUrl = '/chartProductProfitLine?type=line&field_a=product';
+            var top10Url = '/top10Products';
+            var top10CategoriesUrl = '/top10ProductCategories';
+            var omzetByCategoryUrl = '/chartOmzetByCategory'; 
+            // Plotly.d3.json(barUrl, function(error, data) {
+            //     if (error) {
+            //         console.log(error);
+            //     }
+
+            //     var barData = [{
+            //         x: data.data[0].x,
+            //         y: data.data[0].y,
+            //         type: 'bar'
+            //     }];
+            //     var barLayout = {
+            //         title: data.layout.title,
+            //         xaxis: data.layout.xaxis,
+            //         yaxis: data.layout.yaxis
+            //     };
+            //     Plotly.newPlot('plot', barData, barLayout);
+            // });
+
+            Plotly.d3.json(lineUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var lineData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'line'
+                }];
+                var lineLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('linePlot', lineData, lineLayout);
+            });
+
+            Plotly.d3.json(top10Url, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('top10Products', barData, barLayout);
+            });
+
+            Plotly.d3.json(top10CategoriesUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('top10Categories', barData, barLayout);
+            });
+
+            Plotly.d3.json(omzetByCategoryUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('omzetByCategory', barData, barLayout);
+            });
+        }
+
+        generateVisualization();
+    </script>
+</body>
+
+</html>
