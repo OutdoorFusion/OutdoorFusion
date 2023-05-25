@@ -47,10 +47,11 @@
 
 
 import pandas as pd
+import plotly
 from flask import Flask, render_template, jsonify, request
 import plotly.express as px
 import os
-
+import json
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -81,7 +82,7 @@ def voorraad():
       'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
    })   
    fig = px.bar(df, x='Fruit', y='Amount', color='City', barmode='group')   
-   graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)   
+   graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
    return render_template('voorraadbeheer.html', graphJSON = graphJSON) 
 
 # Create a route for the scatter plot
