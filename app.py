@@ -55,6 +55,13 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
+
+data = {}
+data['Sales'] = pd.read_csv(os.path.join(current_dir, 'static/data', 'Sales.csv'))
+data['NorthwindProduct'] = pd.read_csv(os.path.join(current_dir, 'static/data', 'northwind-product.csv'))
+# Add more datasets if needed
+
+
 # Load CSV file
 data = pd.read_csv(file_path)
 
@@ -71,12 +78,22 @@ def dash():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/voorraadbeheer')
+def voorraad():
+    return render_template('voorraadbeheer.html')
+
 # Create a route for the scatter plot
 @app.route('/plot')
 def plot():
+    dataset = request.args.get('dataset')
     field_a = request.args.get('field_a')
     field_b = request.args.get('field_b')
     
+    if dataset not in data:
+        return jsonify(error='Invalid dataset')
+
+    df = data[dataset]
+
     fig = None
     if field_a and field_b:
         fig = px.scatter(data, x=field_a, y=field_b)
