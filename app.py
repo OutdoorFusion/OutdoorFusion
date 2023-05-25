@@ -55,16 +55,10 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
-
-data = {}
-data['Sales'] = pd.read_csv(os.path.join(current_dir, 'static/data', 'Sales.csv'))
-data['NorthwindProduct'] = pd.read_csv(os.path.join(current_dir, 'static/data', 'northwind-product.csv'))
-# Add more datasets if needed
-
+voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
 
 # Load CSV file
 data = pd.read_csv(file_path)
-
 
 # Create Flask app
 app = Flask(__name__)
@@ -80,19 +74,21 @@ def dashboard():
 
 @app.route('/voorraadbeheer')
 def voorraad():
-    return render_template('voorraadbeheer.html')
+   df = pd.DataFrame({
+      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 
+      'Bananas'],
+      'Amount': [4, 1, 2, 2, 4, 5],
+      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
+   })   
+   fig = px.bar(df, x='Fruit', y='Amount', color='City', barmode='group')   
+   graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)   
+   return render_template('voorraadbeheer.html', graphJSON = graphJSON) 
 
 # Create a route for the scatter plot
 @app.route('/plot')
 def plot():
-    dataset = request.args.get('dataset')
     field_a = request.args.get('field_a')
     field_b = request.args.get('field_b')
-    
-    if dataset not in data:
-        return jsonify(error='Invalid dataset')
-
-    df = data[dataset]
 
     fig = None
     if field_a and field_b:
@@ -145,7 +141,6 @@ def chart():
     elif chart_type == 'bar':
         df = data.groupby(field_a)['Revenue'].sum().reset_index()
         fig = px.bar(df, x=field_a, y='Revenue')
-    
     if fig:
         graphJSON = fig.to_json()
         return graphJSON
