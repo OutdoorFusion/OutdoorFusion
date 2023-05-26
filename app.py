@@ -4,18 +4,14 @@ import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
 
-# Load CSV file
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-# data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-# Create Flask app
+# data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 app = Flask(__name__)
 
-# Create a route for the dashboard
 @app.route('/')
 def dashboard():
     return render_template('dashboard.html')
 
-# Create a route for the scatter plot
 @app.route('/plot')
 def plot():
     field_a = request.args.get('field_a')
@@ -33,29 +29,25 @@ def plot():
     
 
 
-# Load CSV file
 @app.route('/chartQuantityByCategory')
 def chart_quantity_by_category():
-    OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    # OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    OrderDetailsData = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
     category_quantity = OrderDetailsData.groupby('CategoryName')['Quantity'].sum().reset_index()
 
-    # Sort by 'Quantity' in descending order
     category_quantity = category_quantity.sort_values('Quantity', ascending=False)
 
-    # Create bar graph data
     chart_data = go.Bar(
         x=category_quantity['CategoryName'],
         y=category_quantity['Quantity']
     )
 
-    # Create bar graph layout
     chart_layout = go.Layout(
         title='Welke producten worden het meest verkocht',
         xaxis={'title': 'Category'},
         yaxis={'title': 'Quantity'}
     )
 
-    # Create figure
     figure = go.Figure(data=[chart_data], layout=chart_layout)
 
     return figure.to_json()
@@ -63,14 +55,12 @@ def chart_quantity_by_category():
 
 @app.route('/chartOmzetByCategory')
 def chart_omzet_by_category():
-    dfOmzet = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
-    # Group by 'CategoryName' and calculate the total 'Omzet'
+    # dfOmzet = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
+    dfOmzet = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
     category_omzet = dfOmzet.groupby('CategoryName')['Omzet'].sum().reset_index()
 
-    # Sort by 'Omzet' in descending order
     category_omzet = category_omzet.sort_values('Omzet', ascending=False)
 
-    # Create bar graph data
     chart_data = go.Bar(
         x=category_omzet['CategoryName'],
         y=category_omzet['Omzet']
@@ -148,27 +138,21 @@ def chart_omzet_by_category():
 def chartVerkoopPrestaties():
     selected_product = request.args.get('product')
 
-    # Filter the data based on the selected product
     product_data = data[data['Product'] == selected_product]
 
-    # Check if product data exists
     if product_data.empty:
         return jsonify(error='Selected product not found')
 
-    # Prepare the data for the bar chart
     variables = ['Unit_Cost', 'Unit_Price', 'winst', 'Profit', 'Order_Quantity', 'Revenue']
     labels = ['Unit Cost', 'Unit Price', 'Unit Price / Unit Cost', 'Profit', 'Order Quantity', 'Revenue']
     values = product_data[variables].iloc[0].tolist()
 
-    # Create a bar chart using Plotly Express
     fig = px.bar(x=labels, y=values, labels={'x': 'Variable', 'y': 'Value'}, title=f'Product Data for {selected_product}')
 
-    # Convert the figure to JSON format
     graphJSON = fig.to_json()
 
     return graphJSON    
 
-# Create a route for generating different types of charts
 @app.route('/chart')
 def chart():
     chart_type = request.args.get('type')
@@ -283,7 +267,6 @@ def chartProductProfitLine():         #TODO Verwerk ook Northwind.
         df = data.groupby(field_a)['Revenue'].sum().reset_index()
         fig = px.bar(df, x=field_a, y='Revenue')
 
-    # Return the figure as JSON
     return fig.to_json()
 
 
@@ -299,18 +282,16 @@ def tablesVerkoopPrestaties():
 
 @app.route('/tables') #table van dashboard. Anders dan die van VerkoopPrestaties
 def tables():
-    table_options = data.columns.tolist()  # Assuming each column represents a table
+    table_options = data.columns.tolist()  
     
     return jsonify(tables=table_options)
 
 
 
-# Create a route for the adventureworks page
 @app.route('/adventureworks')
 def adventureworks():
     return render_template('adventureworks.html')
 
-# Create a route for the verkoopprestaties page
 @app.route('/verkoopprestaties')
 def verkoopprestaties():
     return render_template('verkoopprestaties.html')
@@ -338,29 +319,26 @@ def bikestoreprestaties():
 def product_data():
     selected_product = request.args.get('product')
 
-    # Filter the data based on the selected product
     product_data = data[data['Product'] == selected_product]
 
-    # Prepare the data for the selected product
     product_info = {
     'unitCost': int(product_data['Unit_Cost'].iloc[0]),
     'unitPrice': int(product_data['Unit_Price'].iloc[0]),
     'winst': float(product_data['Unit_Price'].iloc[0]) / float(product_data['Unit_Cost'].iloc[0]),
     'profit': int(product_data['Profit'].iloc[0]),
     'quantity': int(product_data['Order_Quantity'].iloc[0]),
-    'Sub_Category': int(product_data['Sub_Category'].iloc[0]),
+    # 'Sub_Category': int(product_data['Sub_Category'].iloc[0]),
+    'Sub_Category': product_data['Sub_Category'].iloc[0],
     'revenue': int(product_data['Revenue'].iloc[0]),
 
     # 'date': product_data['Date'].iloc[0].strftime('%Y-%m-%d'),  #TODO sloopt op dit moment de 'Productinzien' pagina
     # 'Product_Category': product_data['Product_Category'].iloc[0]
 }
-    # Prepare the response data
     response_data = {
         'productInfo': product_info
     }
 
     return jsonify(response_data)
 
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
