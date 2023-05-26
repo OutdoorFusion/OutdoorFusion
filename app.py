@@ -77,7 +77,7 @@ def dashboard():
     return render_template('newDashboard.html')
 
 @app.route('/feiten')
-def dashboard():
+def feiten():
     return render_template('newwDashboard.html')
 
 @app.route('/voorraadbeheer')
