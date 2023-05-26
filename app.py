@@ -71,6 +71,10 @@ def dash():
 def dashboard():
     return render_template('newDashboard.html')
 
+@app.route('/feiten')
+def dashboard():
+    return render_template('newwDashboard.html')
+
 # Create a route for the scatter plot
 @app.route('/plot')
 def plot():
