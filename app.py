@@ -57,6 +57,9 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
 voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
+ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
+adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
+
 
 # Load CSV file
 data = pd.read_csv(file_path)
@@ -75,15 +78,26 @@ def dashboard():
 
 @app.route('/voorraadbeheer')
 def voorraad():
-   df = pd.DataFrame({
-      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 
-      'Bananas'],
-      'Amount': [4, 1, 2, 2, 4, 5],
-      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
-   })   
-   fig = px.bar(df, x='Fruit', y='Amount', color='City', barmode='group')   
-   graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
-   return render_template('voorraadbeheer.html', graphJSON = graphJSON) 
+
+    df = pd.read_csv(voorraad_path)
+    df2 = pd.read_csv(ac_path)
+    df3 = pd.read_csv(adventure_path)
+
+    fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
+    fig2 = px.bar(df2, x='name', y='Totaal van quantity')
+    fig3 = px.bar(df3, x='Name', y='Som van Quantity')
+
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+    graphac = json.dumps(fig2, cls = plotly.utils.PlotlyJSONEncoder)
+    graphadventure = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('voorraadbeheer.html', graphJSON = graphJSON,graphac = graphac, graphadventure = graphadventure)
+@app.route('/ac')
+def ac():
+
+    df = pd.read_csv(voorraad_path)
+    fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+    return render_template('voorraadbeheer.html', graphJSON = graphJSON)
 
 # Create a route for the scatter plot
 @app.route('/plot')

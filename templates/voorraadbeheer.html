@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutdoorFusion</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/indexStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/voorraadbeheerStyle.css') }}">
 </head>
 <body>
     <header>
@@ -24,7 +24,18 @@
     </header>
             <div class="blackBar"></div>
     <main>
-        <div id='chart' class='chart'”></div>
+        <div class="chart_card">
+            <h2>Northwind</h2>
+            <div id='chart' class='chart'></div>
+        </div>
+        <div class="chart_card">
+            <h2>A en C</h2>
+            <div id='chart2' class='chart2'></div>
+        </div>
+         <div class="chart_card">
+            <h2>Adventure</h2>
+            <div id='chart3' class='chart3'></div>
+        </div>
     </main>
     <footer>
         <nav class="bottomNav">
@@ -39,6 +50,12 @@
 </body>
 <script type='text/javascript'>
     var graphs = {{graphJSON | safe}};
+    var graphs2 = {{graphac | safe}};
+    var graphs3 = {{graphadventure | safe}};
+
     Plotly.plot('chart',graphs,{});
+    Plotly.plot('chart2',graphs2,{});
+    Plotly.plot('chart3',graphs3,{});
+
   </script>
 </html>
