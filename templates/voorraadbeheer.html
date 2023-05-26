@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutdoorFusion</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/indexStyle.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/voorraadbeheerStyle.css') }}">
 </head>
 <body>
     <header>
@@ -20,35 +21,23 @@
                 <li><a href="">Northwind</a></li>
             </ul>
         </nav>
-        
     </header>
             <div class="blackBar"></div>
     <main>
-        <div class="container">
-            <div class="card">
-                <div class="card_header"><h2>Ga naar het dashboard</h2></div>
-                <div class="card_content">
-                    <a href="{{ url_for('dashboard') }}">
-                        <img src="{{ url_for('static', filename='afbeeldingen/dashboard_image.jpg') }}" style="height: 250px;" alt="Dashboard Image">
-                    </a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_header"><h2>link naar pagina 2</h2></div>
-                <div class="card_content">
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_header"><h2>link naar pagina 3</h2></div>
-                <div class="card_content">
-                </div>
-            </div>
+        <div class="chart_card">
+            <h2>Northwind</h2>
+            <div id='chart' class='chart'></div>
+        </div>
+        <div class="chart_card">
+            <h2>A en C</h2>
+            <div id='chart2' class='chart2'></div>
+        </div>
+         <div class="chart_card">
+            <h2>Adventure</h2>
+            <div id='chart3' class='chart3'></div>
         </div>
     </main>
-
-    
     <footer>
-        
         <nav class="bottomNav">
             <h2>LINKS</h2>
             <ul>
@@ -57,8 +46,16 @@
                 <li><a href="">Northwind</a></li>
             </ul>
         </nav>
-
     </footer>
-
 </body>
+<script type='text/javascript'>
+    var graphs = {{graphJSON | safe}};
+    var graphs2 = {{graphac | safe}};
+    var graphs3 = {{graphadventure | safe}};
+
+    Plotly.plot('chart',graphs,{});
+    Plotly.plot('chart2',graphs2,{});
+    Plotly.plot('chart3',graphs3,{});
+
+  </script>
 </html>
