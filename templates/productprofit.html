@@ -28,7 +28,7 @@
             var omzetByCategoryUrl = '/chartOmzetByCategory';
             var quantityByCategoryUrl = '/chartQuantityByCategory'; // New URL for the new chart
             
-            Plotly.d3.json(barUrl, function(error, data) {
+            Plotly.d3.json(barUrl, function(error, data) { //neit gebruikt maa randers werkt de line niet
                 if (error) {
                     console.log(error);
                 }
@@ -43,28 +43,78 @@
                     xaxis: data.layout.xaxis,
                     yaxis: data.layout.yaxis
                 };
+                
                 Plotly.newPlot('plot', barData, barLayout);
             });
 
+
+
+
+
             Plotly.d3.json(lineUrl, function(error, data) {
-                if (error) {
-                    console.log(error);
-                }
+    if (error) {
+        console.log(error);
+    }
 
-                var lineData = [{
-                    x: data.data[0].x,
-                    y: data.data[0].y,
-                    type: 'line'
-                }];
-                var lineLayout = {
-                    title: data.layout.title,
-                    xaxis: data.layout.xaxis,
-                    yaxis: data.layout.yaxis
-                };
-                Plotly.newPlot('linePlot', lineData, lineLayout);
-            });
+    var lineData = [{
+        x: data.data[0].x,
+        y: data.data[0].y,
+        type: 'line'
+    }];
 
-            Plotly.d3.json(top10Url, function(error, data) {
+    // Check if predicted data is available
+    if (data.data[1] && data.data[1].x.length > 0) {
+        var predictedData = {
+            x: data.data[1].x,
+            y: data.data[1].y,
+            type: 'line',
+            name: 'Predicted Profit'
+        };
+        lineData.push(predictedData);
+    }
+
+    var lineLayout = {
+        title: data.layout.title,
+        xaxis: data.layout.xaxis,
+        yaxis: data.layout.yaxis
+    };
+    Plotly.newPlot('linePlot', lineData, lineLayout);
+});
+
+
+
+// Function to generate predicted dates starting from the last date in the existing data
+function getPredictedDates(lastDate) {
+    var startDate = new Date(lastDate);
+    startDate.setMonth(startDate.getMonth() + 1);  // Start from the month after the last date
+
+    var endDate = new Date('2019-12-31');
+    var predictedDates = [];
+    var currentDate = startDate;
+
+    while (currentDate <= endDate) {
+        predictedDates.push(new Date(currentDate));
+        currentDate.setMonth(currentDate.getMonth() + 1);  // Increment to the next month
+    }
+
+    return predictedDates;
+}
+
+// Function to generate predicted profits using an AI model or any other method
+function getPredictedProfits(predictedDates) {
+    // Implement your logic to predict profits for the predicted dates
+    // You can use AI models or any other approach here
+
+    // For demonstration purposes, let's assume predicted profits are zero
+    var predictedProfits = Array(predictedDates.length).fill(0);
+
+    return predictedProfits;
+}
+
+
+
+
+            Plotly.d3.json(top10Url, function(error, data) {//top 10 producten kwa opbrengsten
                 if (error) {
                     console.log(error);
                 }
@@ -100,7 +150,7 @@
                 Plotly.newPlot('top10Categories', barData, barLayout);
             });
 
-            Plotly.d3.json(omzetByCategoryUrl, function(error, data) {
+            Plotly.d3.json(omzetByCategoryUrl, function(error, data) { //welke categorieen leveren het meeste op (omzet)
                 if (error) {
                     console.log(error);
                 }
@@ -118,9 +168,9 @@
                 Plotly.newPlot('omzetByCategory', barData, barLayout);
             });
 
-            Plotly.d3.json(quantityByCategoryUrl, function(error, data) {
+            Plotly.d3.json(quantityByCategoryUrl, function(error, data) { //welke producten worden het meest verkocht
                 if (error) {
-                    console.log(error);
+                    console.log(error);         
                 }
 
                 var barData = [{

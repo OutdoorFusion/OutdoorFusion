@@ -3,9 +3,12 @@ from flask import Flask, render_template, jsonify, request
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
+from sklearn.linear_model import LinearRegression
+import json
 
-# data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
-data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+
+data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+# data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 app = Flask(__name__)
 
 @app.route('/')
@@ -31,8 +34,8 @@ def plot():
 
 @app.route('/chartQuantityByCategory')
 def chart_quantity_by_category():
-    # OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
-    OrderDetailsData = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    # OrderDetailsData = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
     category_quantity = OrderDetailsData.groupby('CategoryName')['Quantity'].sum().reset_index()
 
     category_quantity = category_quantity.sort_values('Quantity', ascending=False)
@@ -55,8 +58,8 @@ def chart_quantity_by_category():
 
 @app.route('/chartOmzetByCategory')
 def chart_omzet_by_category():
-    # dfOmzet = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
-    dfOmzet = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
+    dfOmzet = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
+    # dfOmzet = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
     category_omzet = dfOmzet.groupby('CategoryName')['Omzet'].sum().reset_index()
 
     category_omzet = category_omzet.sort_values('Omzet', ascending=False)
@@ -176,6 +179,85 @@ def chart():
     else:
         return jsonify(error='Invalid chart type or field A')
     
+
+
+
+
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import json
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import json
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import json
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import plotly.express as px
+
+
+
+import pandas as pd
+import plotly.express as px
+
+# Read the data from the combined_revenue_profit_product.csv file
+data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv")
+data['Date'] = pd.to_datetime(data['Date'])
+
+@app.route('/chartOriginal')
+def chartOriginal():
+    chart_type = request.args.get('type')
+    field_a = request.args.get('field_a')
+
+    if chart_type == 'bar':
+        if field_a == 'product':
+            df = data.groupby('Product')['Profit'].sum().reset_index()
+            fig = px.bar(df, x='Product', y='Profit', title='Profit per Product',
+                         labels={'Product': 'Product', 'Profit': 'Profit'})
+        else:
+            df = data.groupby(field_a)['Revenue'].sum().reset_index()
+            fig = px.bar(df, x=field_a, y='Revenue')
+    elif chart_type == 'pie':
+        if field_a == 'index':
+            df = data[field_a].value_counts().reset_index()
+            fig = px.pie(df, values=field_a, names='index')
+        else:
+            df = data.groupby(field_a)['Revenue'].sum().reset_index()
+            fig = px.pie(df, values='Revenue', names=field_a)
+    else:
+        return jsonify(error='Invalid chart type')
+
+    if fig:
+        graphJSON = fig.to_json()
+        return graphJSON
+    else:
+        return jsonify(error='Invalid chart type or field A')
+
+
+
+
+# Read the data from the combined_revenue_profit_product.csv file
+data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv2")
+data['Date'] = pd.to_datetime(data['Date'])
+
+
 @app.route('/chartProductProfit')
 def chartProductProfit():
     chart_type = request.args.get('type')
@@ -187,26 +269,98 @@ def chartProductProfit():
             df = data[field_a].value_counts().reset_index()
             fig = px.pie(df, values=field_a, names='index')
         else:
-            df = data.groupby(field_a)['Revenue'].sum().reset_index()
-            fig = px.pie(df, values='Revenue', names=field_a)
+            df = data.groupby(field_a)['Profit'].sum().reset_index()
+            fig = px.pie(df, values='Profit', names=field_a)
     elif chart_type == 'bar':
         if field_a == 'product':
-            data['Date'] = pd.to_datetime(data['Date'])
-            product_data = data.groupby(['Product', pd.Grouper(key='Date', freq='M')])['Profit'].mean().reset_index()
+            product_data = data.groupby(['Product', pd.Grouper(key='Date', freq='M')]).agg({'Profit': 'mean'}).reset_index()
 
-            fig = px.bar(product_data, x='Date', y='Profit', color='Product',
-                         title='Average Profit per Month for Each Product',
-                         labels={'Date': 'Date', 'Profit': 'Average Profit', 'Product': 'Product'})
+            # Prepare the training data for all products
+            X_train_product = product_data[product_data['Date'] < '2016-08-01']['Date'].apply(lambda x: x.toordinal()).values.reshape(-1, 1)
+            y_train_product = product_data[product_data['Date'] < '2016-08-01']['Profit'].values
+
+            # Train the linear regression model for all products
+            model_product = LinearRegression()
+            model_product.fit(X_train_product, y_train_product)
+
+            # Generate predictions for all products
+            prediction_dates = pd.date_range(start='2016-08-01', end='2025-12-31', freq='M')
+            X_pred_product = np.array([date.toordinal() for date in prediction_dates]).reshape(-1, 1)
+            predicted_profits_product = model_product.predict(X_pred_product)
+
+            # Create a dataframe to store the predicted profits
+            predicted_data = pd.DataFrame({'Date': prediction_dates, 'Profit': predicted_profits_product})
+
+            # Update the bar chart with the predicted data
+            fig = px.bar(predicted_data, x='Date', y='Profit', title='Average Profit per Month',
+                         labels={'Date': 'Date', 'Profit': 'Average Profit'})
             fig.update_layout(barmode='stack')
+        else:
+            df = data.groupby(field_a)['Profit'].sum().reset_index()
+            fig = px.bar(df, x=field_a, y='Profit')
     else:
-        df = data.groupby(field_a)['Revenue'].sum().reset_index()
-        fig = px.bar(df, x=field_a, y='Revenue')
+        return jsonify(error='Invalid chart type')
 
     if fig:
         graphJSON = fig.to_json()
         return graphJSON
     else:
         return jsonify(error='Invalid chart type or field A')
+
+
+#PREDICTED REVENUE
+# @app.route('/chartProductRevenue')
+# def chartProductRevenue():
+#     chart_type = request.args.get('type')
+#     field_a = request.args.get('field_a')
+
+#     fig = None
+#     if chart_type == 'pie':
+#         if field_a == 'index':
+#             df = data[field_a].value_counts().reset_index()
+#             fig = px.pie(df, values=field_a, names='index')
+#         else:
+#             df = data.groupby(field_a)['Revenue'].sum().reset_index()
+#             fig = px.pie(df, values='Revenue', names=field_a)
+#     elif chart_type == 'bar':
+#         if field_a == 'product':
+#             product_data = data.groupby(['Product', pd.Grouper(key='Date', freq='M')]).agg({'Revenue': 'mean'}).reset_index()
+
+#             # Prepare the training data for all products
+#             X_train_product = product_data[product_data['Date'] < '2016-08-01']['Date'].apply(lambda x: x.toordinal()).values.reshape(-1, 1)
+#             y_train_product = product_data[product_data['Date'] < '2016-08-01']['Revenue'].values
+
+#             # Train the linear regression model for all products
+#             model_product = LinearRegression()
+#             model_product.fit(X_train_product, y_train_product)
+
+#             # Generate predictions for all products
+#             prediction_dates = pd.date_range(start='2016-08-01', end='2025-12-31', freq='M')
+#             X_pred_product = np.array([date.toordinal() for date in prediction_dates]).reshape(-1, 1)
+#             predicted_revenue_product = model_product.predict(X_pred_product)
+
+#             # Create a dataframe to store the predicted revenues
+#             predicted_data = pd.DataFrame({'Date': prediction_dates, 'Revenue': predicted_revenue_product})
+
+#             # Update the bar chart with the predicted data
+#             fig = px.bar(predicted_data, x='Date', y='Revenue', title='Average Revenue per Month',
+#                          labels={'Date': 'Date', 'Revenue': 'Average Revenue'})
+#             fig.update_layout(barmode='stack')
+#         else:
+#             df = data.groupby(field_a)['Revenue'].sum().reset_index()
+#             fig = px.bar(df, x=field_a, y='Revenue')
+#     else:
+#         return jsonify(error='Invalid chart type')
+
+#     if fig:
+#         graphJSON = fig.to_json()
+#         return graphJSON
+#     else:
+#         return jsonify(error='Invalid chart type or field A')
+
+
+
+
     
 
 
