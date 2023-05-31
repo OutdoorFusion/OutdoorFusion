@@ -11,5 +11,33 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    </body>
+    <div id="chart-container"></div>
+
+    <script>
+        // Function to fetch the chart data from the server for a specific category
+        function fetchChartData(category) {
+            const url = '/chartProductQuantity?type=line';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const chartData = data.data.filter(d => d.name === category);
+                    const chartLayout = data.layout;
+
+                    const chartContainer = document.createElement('div');
+                    chartContainer.setAttribute('id', `chart-container-${category}`);
+                    document.body.appendChild(chartContainer);
+
+                    Plotly.newPlot(`chart-container-${category}`, chartData, chartLayout);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function to fetch and display the chart data for each category
+        const categories = ['Beverages', 'Condiments', 'Confections', 'Dairy Products', 'Grains/Cereals', 'Meat/Poultry', 'Produce', 'Seafood'];
+        categories.forEach(category => {
+            fetchChartData(category);
+        });
+    </script>
+</body>
 </html>

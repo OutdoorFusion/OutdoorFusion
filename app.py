@@ -84,56 +84,41 @@ def chart_omzet_by_category():
 
 
 
-#Categories.CategoryName
+#northwindProductQuantity
+@app.route('/chartProductQuantity')
+def chartProductQuantity():
+    chart_type = request.args.get('type')
 
+    # Read the data from the NorthwindNew2.csv file
+    data = pd.read_csv("C:/Users/3dvec/OneDrive - De Haagse Hogeschool/Sem4/OneDrive - De Haagse Hogeschool/OutdoorFusionDashboard/OutdoorFusion/NorthwindAIPrediction.csv",
+                    #    parse_dates=['OrderDate'], dayfirst=True)
+                    parse_dates=['OrderDate'], dayfirst=False)
 
-# @app.route('/chartOmzetByCategory')
-# def chart_omzet_by_category():
-#     df = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//NWSNewCSV.csv")
+    fig = None
+    if chart_type == 'line':
+        # Group the data by month and calculate the average quantity by category
+        category_data = data.groupby(['Categories.CategoryName', pd.Grouper(key='OrderDate', freq='M')])['Quantity'].mean().reset_index()
 
-#     # Group by 'Category.CategoryName' and calculate the total 'Omzet'
-#     category_omzet = df.groupby('Categories.CategoryName')['Omzet'].sum().reset_index()
+        # Create the line chart using Plotly
+        fig = px.line(category_data, x='OrderDate', y='Quantity', color='Categories.CategoryName', 
+                      title='Monthly Average Quantity by Category')
 
-#     # Sort by 'Omzet' in descending order and select the top 10 categories
-#     top_10_categories = category_omzet.nlargest(10, 'Omzet')
+        # Customize the chart layout
+        fig.update_layout(
+            xaxis_title='Date',
+            yaxis_title='Average Quantity',
+            legend_title='Category',
+            hovermode='x'
+        )
+    else:
+        return jsonify(error='Invalid chart type')
 
-#     # Create chart data
-#     chart_data = go.Bar(
-#         x=top_10_categories['Categories.CategoryName'],
-#         y=top_10_categories['Omzet']
-#     )
+    if fig:
+        graphJSON = fig.to_json()
+        return graphJSON
+    else:
+        return jsonify(error='Invalid chart type')
 
-#     # Create chart layout
-#     chart_layout = go.Layout(
-#         title='Top 10 Product Categories by Total Sales',
-#         xaxis={'title': 'Category'},
-#         yaxis={'title': 'Total Sales'}
-#     )
-
-#     # Create figure
-#     figure = go.Figure(data=[chart_data], layout=chart_layout)
-
-#     return figure.to_json()
-
-
-
-
-
-
-
-# @app.route('/profit_per_product')
-# def profit_per_product():
-#     # Perform necessary calculations to obtain the profit per product
-#     data['Profit'] = data['Order Details.1.Quantity'] * data['UnitPrice']
-#     profit_per_product = data.groupby('ProductName')['Profit'].sum().reset_index()
-
-#     # Create a bar chart using Plotly Express
-#     fig = px.bar(profit_per_product, x='ProductName', y='Profit', labels={'ProductName': 'Product', 'Profit': 'Profit'})
-
-#     # Convert the figure to JSON format
-#     graphJSON = fig.to_json()
-
-#     return graphJSON
 
 
 
@@ -184,41 +169,8 @@ def chart():
 
 
 
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
 
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
-
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
-import json
-
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
-import json
-
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
-import json
-
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
-import plotly.express as px
-
-
-
-import pandas as pd
-import plotly.express as px
-
-# Read the data from the combined_revenue_profit_product.csv file
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv")
+data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv") #Totale Winst over Alle Producten Per maand
 data['Date'] = pd.to_datetime(data['Date'])
 
 @app.route('/chartOriginal')
@@ -253,8 +205,7 @@ def chartOriginal():
 
 
 
-# Read the data from the combined_revenue_profit_product.csv file
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv2")
+data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product2.csv")
 data['Date'] = pd.to_datetime(data['Date'])
 
 
@@ -308,7 +259,7 @@ def chartProductProfit():
         return jsonify(error='Invalid chart type or field A')
 
 
-#PREDICTED REVENUE
+#PREDICTED REVENUE lijkt iets te veel op profit
 # @app.route('/chartProductRevenue')
 # def chartProductRevenue():
 #     chart_type = request.args.get('type')
@@ -389,8 +340,8 @@ def top10ProductCategories():
 
 
 
-@app.route('/chartProductProfitLine') #TODO verwerk Purchasing.PurchaseOrderHeader hier ook in vanuit Adventureworks. AenC bevat alleen maar unit_price en quantity dat is te weinig
-def chartProductProfitLine():         #TODO Verwerk ook Northwind. 
+@app.route('/chartProductProfitLine') 
+def chartProductProfitLine():         
     chart_type = request.args.get('type')
     field_a = request.args.get('field_a')
 
