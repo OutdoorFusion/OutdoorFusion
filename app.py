@@ -1,25 +1,73 @@
 import pandas as pd
+import plotly
 from flask import Flask, render_template, jsonify, request
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
 import json
-
+import os
 
 data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 # data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+=======
+
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
+voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
+ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
+adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
+
+
+# Load CSV file
+data = pd.read_csv(file_path)
+
+# Create Flask app
 app = Flask(__name__)
 
 @app.route('/')
+def dash():
+    return render_template('index.html')
+
+@app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('newDashboard.html')
+
+@app.route('/feiten')
+def feiten():
+    return render_template('newwDashboard.html')
+
+@app.route('/voorraadbeheer')
+def voorraad():
+
+    df = pd.read_csv(voorraad_path)
+    df2 = pd.read_csv(ac_path)
+    df3 = pd.read_csv(adventure_path)
+
+    fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
+    fig2 = px.bar(df2, x='name', y='Totaal van quantity')
+    fig3 = px.bar(df3, x='Name', y='Som van Quantity')
+
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+    graphac = json.dumps(fig2, cls = plotly.utils.PlotlyJSONEncoder)
+    graphadventure = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('voorraadbeheer.html', graphJSON = graphJSON,graphac = graphac, graphadventure = graphadventure)
+@app.route('/ac')
+def ac():
+
+    df = pd.read_csv(voorraad_path)
+    fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+    return render_template('voorraadbeheer.html', graphJSON = graphJSON)
 
 @app.route('/plot')
 def plot():
     field_a = request.args.get('field_a')
     field_b = request.args.get('field_b')
-    
+
     fig = None
     if field_a and field_b:
         fig = px.scatter(data, x=field_a, y=field_b)
@@ -157,7 +205,6 @@ def chart():
     elif chart_type == 'bar':
         df = data.groupby(field_a)['Revenue'].sum().reset_index()
         fig = px.bar(df, x=field_a, y='Revenue')
-    
     if fig:
         graphJSON = fig.to_json()
         return graphJSON

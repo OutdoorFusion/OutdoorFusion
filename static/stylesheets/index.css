@@ -1,0 +1,40 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 32px;
+}
+
+.graphImage {
+    width: 45%;
+    aspect-ratio: 16/9;
+}
+
+h1 {
+    text-align: center;
+    width: 100%;
+}
+
+.graphContainer {
+    width: 95%;
+    margin: auto;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+}
+
+.graphContainer img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid black
+}
+
+.graphContainer p {
+    margin-top: 0px;
+    margin-left: 16px;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
