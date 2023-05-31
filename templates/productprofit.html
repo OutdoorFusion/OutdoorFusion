@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/OutdoorFusion.css" />
+    <title>AdventureWorks Dashboard</title>
+    <div id="Menubalk">
+    </div>
+    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
+    <a href="http://127.0.0.1:5000/adventureworks"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar AdventurWorks" /></a>
+    <a href="http://127.0.0.1:5000/verkoopprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Verkoopprestaties" /></a>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- <div id="plot"></div> -->
+    <div id="linePlot"></div>
+    <div id="top10Products"></div>
+    <div id="top10Categories"></div>
+    <div id="productProfitChart"></div>
+    <div id="omzetByCategory"></div>
+    <div id="quantityByCategory"></div>
+
+    <script>
+        function generateVisualization() {
+            var barUrl = '/chartProductProfit?type=bar&field_a=product';
+            var lineUrl = '/chartProductProfitLine?type=line&field_a=product';
+            var top10Url = '/top10Products';
+            var top10CategoriesUrl = '/top10ProductCategories';
+            var omzetByCategoryUrl = '/chartOmzetByCategory';
+            var quantityByCategoryUrl = '/chartQuantityByCategory'; // New URL for the new chart
+            
+            Plotly.d3.json(barUrl, function(error, data) { //neit gebruikt maa randers werkt de line niet
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                
+                Plotly.newPlot('plot', barData, barLayout);
+            });
+
+
+
+
+
+            Plotly.d3.json(lineUrl, function(error, data) {
+    if (error) {
+        console.log(error);
+    }
+
+    var lineData = [{
+        x: data.data[0].x,
+        y: data.data[0].y,
+        type: 'line'
+    }];
+
+    // Check if predicted data is available
+    if (data.data[1] && data.data[1].x.length > 0) {
+        var predictedData = {
+            x: data.data[1].x,
+            y: data.data[1].y,
+            type: 'line',
+            name: 'Predicted Profit'
+        };
+        lineData.push(predictedData);
+    }
+
+    var lineLayout = {
+        title: data.layout.title,
+        xaxis: data.layout.xaxis,
+        yaxis: data.layout.yaxis
+    };
+    Plotly.newPlot('linePlot', lineData, lineLayout);
+});
+
+
+
+// Function to generate predicted dates starting from the last date in the existing data
+function getPredictedDates(lastDate) {
+    var startDate = new Date(lastDate);
+    startDate.setMonth(startDate.getMonth() + 1);  // Start from the month after the last date
+
+    var endDate = new Date('2019-12-31');
+    var predictedDates = [];
+    var currentDate = startDate;
+
+    while (currentDate <= endDate) {
+        predictedDates.push(new Date(currentDate));
+        currentDate.setMonth(currentDate.getMonth() + 1);  // Increment to the next month
+    }
+
+    return predictedDates;
+}
+
+// Function to generate predicted profits using an AI model or any other method
+function getPredictedProfits(predictedDates) {
+    // Implement your logic to predict profits for the predicted dates
+    // You can use AI models or any other approach here
+
+    // For demonstration purposes, let's assume predicted profits are zero
+    var predictedProfits = Array(predictedDates.length).fill(0);
+
+    return predictedProfits;
+}
+
+
+
+
+            Plotly.d3.json(top10Url, function(error, data) {//top 10 producten kwa opbrengsten
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('top10Products', barData, barLayout);
+            });
+
+            Plotly.d3.json(top10CategoriesUrl, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('top10Categories', barData, barLayout);
+            });
+
+            Plotly.d3.json(omzetByCategoryUrl, function(error, data) { //welke categorieen leveren het meeste op (omzet)
+                if (error) {
+                    console.log(error);
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('omzetByCategory', barData, barLayout);
+            });
+
+            Plotly.d3.json(quantityByCategoryUrl, function(error, data) { //welke producten worden het meest verkocht
+                if (error) {
+                    console.log(error);         
+                }
+
+                var barData = [{
+                    x: data.data[0].x,
+                    y: data.data[0].y,
+                    type: 'bar'
+                }];
+                var barLayout = {
+                    title: data.layout.title,
+                    xaxis: data.layout.xaxis,
+                    yaxis: data.layout.yaxis
+                };
+                Plotly.newPlot('quantityByCategory', barData, barLayout);
+            });
+        }
+
+        generateVisualization();
+    </script>
+</body>
+</html>

@@ -5,8 +5,8 @@
     <title>OutdoorFusion Dashboard</title>
     <div id="Menubalk">
     </div>
-    <a href="http://127.0.0.1:5000/"><img src="Afbeeldingen\TheGreatLogo.png" alt="Terug naar het hoofdmenu" /></a>
     <a href="http://127.0.0.1:5000/adventureworks"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar AdventurWorks" /></a>
+    <a href="http://127.0.0.1:5000/verkoopprestaties"><img src="Afbeeldingen\TheGreatLogo.png" alt="Naar Verkoopprestaties" /></a>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
@@ -141,11 +141,7 @@
                     });
                 });
             }
-
-            // Call the fetchTableOptions function to populate the select elements on page load
             fetchTableOptions();
-
-            // Add event listener to the generate button for the plot
             document.getElementById('generate-btn').addEventListener('click', generateVisualization);
         </script>
     </body>
