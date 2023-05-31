@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 import json
 import os
 
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
+data = pd.read_csv("static\data\Sales.csv")
 # data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 
 
@@ -80,7 +80,7 @@ def plot():
 
 @app.route('/chartQuantityByCategory')
 def chart_quantity_by_category():
-    OrderDetailsData = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4\OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
+    OrderDetailsData = pd.read_csv("static\data\OrderDetailsPerCategorie.csv")
     # OrderDetailsData = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OrderDetailsPerCategorie.csv")
     category_quantity = OrderDetailsData.groupby('CategoryName')['Quantity'].sum().reset_index()
 
@@ -103,7 +103,7 @@ def chart_quantity_by_category():
 
 @app.route('/chartOmzetByCategory')
 def chart_omzet_by_category():
-    dfOmzet = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
+    dfOmzet = pd.read_csv("static\data\OmzetPerCategorie.csv")
     # dfOmzet = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//OmzetPerCategorie.csv")
     category_omzet = dfOmzet.groupby('CategoryName')['Omzet'].sum().reset_index()
 
@@ -129,9 +129,8 @@ def chartProductQuantity():
     chart_type = request.args.get('type')
 
     # Read the data from the NorthwindNew2.csv file
-    data = pd.read_csv("C:/Users/3dvec/OneDrive - De Haagse Hogeschool/Sem4/OneDrive - De Haagse Hogeschool/OutdoorFusionDashboard/OutdoorFusion/NorthwindAIPrediction.csv",
-                    #    parse_dates=['OrderDate'], dayfirst=True)
-                    parse_dates=['OrderDate'], dayfirst=False)
+    data = pd.read_csv("static/data/NorthwindAIPrediction.csv", parse_dates=['OrderDate'], dayfirst=False)
+
 
     fig = None
     if chart_type == 'line':
@@ -199,7 +198,7 @@ def chart():
     else:
         return jsonify(error='Invalid chart type or field A')
     
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product.csv") #Totale Winst over Alle Producten Per maand
+data = pd.read_csv("static\data\combined_revenue_profit_product.csv") #Totale Winst over Alle Producten Per maand
 data['Date'] = pd.to_datetime(data['Date'])
 
 @app.route('/chartOriginal')
@@ -231,7 +230,7 @@ def chartOriginal():
     else:
         return jsonify(error='Invalid chart type or field A')
 
-data = pd.read_csv("C://Users//3dvec//OneDrive - De Haagse Hogeschool//Sem4//OneDrive - De Haagse Hogeschool//OutdoorFusionDashboard//OutdoorFusion//combined_revenue_profit_product2.csv")
+data = pd.read_csv("static\data\combined_revenue_profit_product2.csv")
 data['Date'] = pd.to_datetime(data['Date'])
 
 @app.route('/chartProductProfit')
