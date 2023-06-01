@@ -130,3 +130,27 @@ main {
 
 
 
+
+
+.graphContainer{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.chart_card{
+    width: 50%;
+    margin: auto;
+}
+
+.chart_card div{
+    width: fit-content;
+    margin: auto;
+}
+
+.chart_card p{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
