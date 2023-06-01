@@ -26,7 +26,9 @@
     <main>
         <div class="chart_card">
             <h2>Northwind</h2>
+            <h2>Dit zijn de hoeveelheid van de producten</h2>
             <div id='chart' class='chart'></div>
+            <div id='chart4' class='chart4'></div>
         </div>
         <div class="chart_card">
             <h2>A en C</h2>
@@ -52,10 +54,13 @@
     var graphs = {{graphJSON | safe}};
     var graphs2 = {{graphac | safe}};
     var graphs3 = {{graphadventure | safe}};
+    var graphs4 = {{graphadventure | safe}};
 
     Plotly.plot('chart',graphs,{});
     Plotly.plot('chart2',graphs2,{});
     Plotly.plot('chart3',graphs3,{});
+    Plotly.plot('chart4',graphs4,{});
+
 
   </script>
 </html>
