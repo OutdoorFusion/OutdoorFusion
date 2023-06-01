@@ -42,9 +42,29 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card_header"><h2>link naar pagina 3</h2></div>
+                <div class="card_header"><h2>Ga naar voorraadbeheer</h2></div>
                 <div class="card_content">
+                    <a href="{{ url_for('voorraad') }}">
+                        <img src="{{ url_for('static', filename='afbeeldingen/voorraadbeheer.png') }}" style="height: 250px;" alt="voorraad Image">
+                        </a>
                 </div>
+            </div>
+            <div class="card">
+                <div class="card_header"><h2>Ga naar feiten</h2></div>
+                <div class="card_content">
+                    <a href="{{ url_for('feiten') }}">
+                        <img src="{{ url_for('static', filename='afbeeldingen/feit.jpg') }}" style="height: 250px;" alt="feiten Image">
+                        </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header"><h2>Ga naar operationele efficientie</h2></div>
+                <div class="card_content">
+                    <a href="{{ url_for('feiten') }}">
+                        <img src="{{ url_for('static', filename='afbeeldingen/operationeel.jpg') }}" style="height: 250px;" alt="feiten Image">
+                        </a>
+                </div>
+                
             </div>
         </div>
     </main>
