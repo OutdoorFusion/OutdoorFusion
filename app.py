@@ -19,6 +19,12 @@ voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv'
 ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
 adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
 
+klanten_countryRegion_path = os.path.join(current_dir, 'static/data', 'Totaal van TerritoryID per CountryRegionCodePB.csv')
+klanten_age_per_group_path = os.path.join(current_dir, 'static/data', 'Totaal van Customer_Age per Age_GroupPB.csv')
+klanten_gender_per_customer_path = os.path.join(current_dir, 'static/data', 'Totaal van Customer_Gender per Customer_GenderPB.csv')
+klanten_nieuw = os.path.join(current_dir, 'static/data', 'Nieuwe Klanten per JaarPB.csv')
+
+
 
 # Load CSV file
 data = pd.read_csv(file_path)
@@ -30,13 +36,35 @@ app = Flask(__name__)
 def dash():
     return render_template('index.html')
 
-@app.route('/dashboard')
-def dashboard():
-    return render_template('newDashboard.html')
+# @app.route('/dashboard')
+# def dashboard():
+#     return render_template('newDashboard.html')
 
 @app.route('/feiten')
 def feiten():
     return render_template('newwDashboard.html')
+
+@app.route('/klanten')
+def klanten():
+
+    df = pd.read_csv(klanten_countryRegion_path)
+    df1 = pd.read_csv(klanten_age_per_group_path)
+    df2 = pd.read_csv(klanten_gender_per_customer_path)
+    df3 = pd.read_csv(klanten_nieuw)
+
+    fig = px.pie(df, names='CountryRegionCode')
+    fig1 = px.pie(df1, names='Age_Group')
+    fig2 = px.pie(df2, names='Customer_Gender')
+    fig3 = px.bar(df3, x='Jaar', y='Nieuwe Klanten')
+
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+    graph1JSON = json.dumps(fig1, cls = plotly.utils.PlotlyJSONEncoder)
+    graph2JSON = json.dumps(fig2, cls = plotly.utils.PlotlyJSONEncoder)
+    graph3JSON = json.dumps(fig3, cls = plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('klanten.html', graphJSON = graphJSON, graph1JSON = graph1JSON, graph2JSON=graph2JSON, graph3JSON=graph3JSON )
+
+
 
 @app.route('/voorraadbeheer')
 def voorraad():
