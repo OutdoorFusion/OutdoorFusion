@@ -19,6 +19,8 @@ voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv'
 ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
 adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
 
+op_path = os.path.join(current_dir, 'static/data', 'Sum_of_Waarde_by_Name.csv')
+
 
 # Load CSV file
 data = pd.read_csv(file_path)
@@ -53,6 +55,19 @@ def voorraad():
     graphac = json.dumps(fig2, cls = plotly.utils.PlotlyJSONEncoder)
     graphadventure = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('voorraadbeheer.html', graphJSON = graphJSON,graphac = graphac, graphadventure = graphadventure)
+
+@app.route('/operationele-efficientie')
+def operationeel():
+
+    df = pd.read_csv(op_path)
+
+    fig = px.bar(df, x='Name', y='Sum of Waarde')
+
+    graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('operationeel.html', graphJSON = graphJSON)
+
+
 @app.route('/ac')
 def ac():
 
