@@ -1,0 +1,5 @@
+# Redirect old URL to new URL
+/old-url   /new-url   301
+
+# Redirect all other paths to the Flask application
+/*    /index.html   200
