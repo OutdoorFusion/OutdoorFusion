@@ -26,17 +26,21 @@
     <main>
         <div class="chart_card">
             <h2>Northwind</h2>
-            <h2>Dit zijn de hoeveelheid van de producten</h2>
+            <h2>Dit zijn de hoeveelheden van de producten per product en per categorie</h2>
             <div id='chart' class='chart'></div>
             <div id='chart4' class='chart4'></div>
         </div>
         <div class="chart_card">
             <h2>A en C</h2>
+            <h2>Dit zijn de hoeveelheden van de producten per product en per categorie</h2>
             <div id='chart2' class='chart2'></div>
+            <div id='chart5' class='chart5'></div>
         </div>
          <div class="chart_card">
             <h2>Adventure</h2>
+            <h2>Dit zijn de hoeveelheden van de producten per product en per categorie</h2>
             <div id='chart3' class='chart3'></div>
+            <div id='chart6' class='chart6'></div>
         </div>
     </main>
     <footer>
@@ -54,12 +58,20 @@
     var graphs = {{graphJSON | safe}};
     var graphs2 = {{graphac | safe}};
     var graphs3 = {{graphadventure | safe}};
-    var graphs4 = {{graphadventure | safe}};
+    var graphs4 = {{northwind_category | safe}};
+    var graphs5 = {{aenc_category | safe}};
+    var graphs6 = {{adventure_category | safe}};
+
+
 
     Plotly.plot('chart',graphs,{});
     Plotly.plot('chart2',graphs2,{});
     Plotly.plot('chart3',graphs3,{});
     Plotly.plot('chart4',graphs4,{});
+    Plotly.plot('chart5',graphs5,{});
+    Plotly.plot('chart6',graphs6,{});
+
+
 
 
   </script>

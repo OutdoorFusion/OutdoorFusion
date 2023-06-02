@@ -17,10 +17,10 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
 voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
 ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
-# adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
-adventure_path = os.path.join(current_dir, 'static/data', 'Som van Quantity per categorieName.csv')
+adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
+adventure_category_path = os.path.join(current_dir, 'static/data', 'Som van Quantity per categorieName.csv')
 northwind_category_path = os.path.join(current_dir, 'static/data', 'Som van waarde per CategoryName-northwind.csv')
-
+aenc_category_path = os.path.join('static/data', 'Som van waarde per Category-aenc.csv')
 
 
 
@@ -49,18 +49,27 @@ def voorraad():
     df2 = pd.read_csv(ac_path)
     df3 = pd.read_csv(adventure_path)
     df4 = pd.read_csv(northwind_category_path)
+    df5 = pd.read_csv(aenc_category_path)
+    df6 = pd.read_csv(adventure_category_path)
 
+    
     fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
     fig2 = px.bar(df2, x='name', y='Totaal van quantity')
     fig3 = px.bar(df3, x='Name', y='Som van Quantity')
     fig4 = px.bar(df4, x='CategoryName', y='Som van waarde')
+    fig5 = px.bar(df5, x='Som van waarde', y='Category')
+    fig6 = px.bar(df6, x='Name', y='Som van Quantity')
+
 
     graphJSON = json.dumps(fig, cls = plotly.utils.PlotlyJSONEncoder)
     graphac = json.dumps(fig2, cls = plotly.utils.PlotlyJSONEncoder)
     graphadventure = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
-    graphnorthwind = json.dumps(fig4, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template('voorraadbeheer.html', graphJSON = graphJSON,graphac = graphac, graphadventure = graphadventure, graphnorthwind = graphnorthwind)
+    northwind_category = json.dumps(fig4, cls=plotly.utils.PlotlyJSONEncoder)
+    aenc_category = json.dumps(fig5, cls=plotly.utils.PlotlyJSONEncoder)
+    adventure_category = json.dumps(fig6, cls=plotly.utils.PlotlyJSONEncoder)
 
+
+    return render_template('voorraadbeheer.html', graphJSON = graphJSON,graphac = graphac, graphadventure = graphadventure, northwind_category = northwind_category, aenc_category = aenc_category, adventure_category = adventure_category)
 
 @app.route('/ac')
 def ac():
@@ -408,5 +417,4 @@ def product_data():
     return jsonify(response_data)
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(debug=False ,host='0.0.0.0')
+    app.run(debug=True)
