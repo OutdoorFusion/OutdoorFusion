@@ -68,7 +68,9 @@ def klanten():
 
     return render_template('klanten.html', graphJSON = graphJSON, graph1JSON = graph1JSON, graph2JSON=graph2JSON, graph3JSON=graph3JSON )
 
-
+@app.route('/voorraadbeheer_voorspelling')
+def voorraadVoorspelling():
+    return render_template('voorraadbeheer_voorspelling.html')
 
 @app.route('/voorraadbeheer')
 def voorraad():
