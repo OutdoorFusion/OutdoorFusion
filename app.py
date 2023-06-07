@@ -8,25 +8,25 @@ from sklearn.linear_model import LinearRegression
 import json
 import os
 
-data = pd.read_csv("static\data\Sales.csv")
 # data = pd.read_csv("C://Users//Vincent//OneDrive - De Haagse Hogeschool//DEDSProject//Dashboard//Sales.csv")
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+data = pd.read_csv(os.path.join(current_dir, 'static/data', 'Sales.csv'))
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
 voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
 ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
 adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
-adventure_category_path = os.path.join(current_dir, 'static/data', 'Som van Quantity per categorieName.csv')
-northwind_category_path = os.path.join(current_dir, 'static/data', 'Som van waarde per CategoryName-northwind.csv')
-aenc_category_path = os.path.join('static/data', 'Som van waarde per Category-aenc.csv')
+adventure_category_path = os.path.join(current_dir, 'static/data', 'Som_van_Quantity_per_categorieName.csv')
+northwind_category_path = os.path.join(current_dir, 'static/data', 'Som_van_waarde_per_CategoryName-northwind.csv')
+aenc_category_path = os.path.join(current_dir, 'static/data', 'Som_van_waarde_per_Category_aenc.csv')
 
 
-klanten_countryRegion_path = os.path.join(current_dir, 'static/data', 'Totaal van TerritoryID per CountryRegionCodePB.csv')
-klanten_age_per_group_path = os.path.join(current_dir, 'static/data', 'Totaal van Customer_Age per Age_GroupPB.csv')
-klanten_gender_per_customer_path = os.path.join(current_dir, 'static/data', 'Totaal van Customer_Gender per Customer_GenderPB.csv')
-klanten_nieuw = os.path.join(current_dir, 'static/data', 'Nieuwe Klanten per JaarPB.csv')
+klanten_countryRegion_path = os.path.join(current_dir, 'static/data', 'Totaal_van_TerritoryID_per_CountryRegionCodePB.csv')
+klanten_age_per_group_path = os.path.join(current_dir, 'static/data', 'Totaal_van_Customer_Age_per_Age_GroupPB.csv')
+klanten_gender_per_customer_path = os.path.join(current_dir, 'static/data', 'Totaal_van_Customer_Gender_per_Customer_GenderPB.csv')
+klanten_nieuw = os.path.join(current_dir, 'static/data', 'Nieuwe_Klanten_per_JaarPB.csv')
 
 
 
@@ -246,7 +246,7 @@ def chart():
     else:
         return jsonify(error='Invalid chart type or field A')
     
-data = pd.read_csv("static\data\combined_revenue_profit_product.csv") #Totale Winst over Alle Producten Per maand
+data = pd.read_csv(os.path.join(current_dir, 'static/data', 'combined_revenue_profit_product.csv')) #Totale Winst over Alle Producten Per maand
 data['Date'] = pd.to_datetime(data['Date'])
 
 @app.route('/chartOriginal')
@@ -278,7 +278,7 @@ def chartOriginal():
     else:
         return jsonify(error='Invalid chart type or field A')
 
-data = pd.read_csv("static\data\combined_revenue_profit_product2.csv")
+data = pd.read_csv(os.path.join(current_dir, 'static/data', 'combined_revenue_profit_product2.csv'))
 data['Date'] = pd.to_datetime(data['Date'])
 
 @app.route('/chartProductProfit')
