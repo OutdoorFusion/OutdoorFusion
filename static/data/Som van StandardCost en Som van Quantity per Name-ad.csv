@@ -1,0 +1,505 @@
+﻿Name,Som van Quantity,Som van StandardCost
+"Road-150 Red, 44",223,"€ 2171,2942"
+"Road-150 Red, 48",140,"€ 2171,2942"
+"Road-150 Red, 52",128,"€ 2171,2942"
+"Road-150 Red, 56",163,"€ 2171,2942"
+"Road-150 Red, 62",133,"€ 2171,2942"
+"Mountain-100 Silver, 38",149,"€ 1912,1544"
+"Mountain-100 Silver, 42",153,"€ 1912,1544"
+"Mountain-100 Silver, 44",158,"€ 1912,1544"
+"Mountain-100 Silver, 48",164,"€ 1912,1544"
+"Mountain-100 Black, 38",155,"€ 1898,0944"
+"Mountain-100 Black, 42",194,"€ 1898,0944"
+"Mountain-100 Black, 44",149,"€ 1898,0944"
+"Mountain-100 Black, 48",153,"€ 1898,0944"
+"Road-250 Black, 44",134,"€ 1554,9479"
+"Road-250 Black, 48",165,"€ 1554,9479"
+"Road-250 Black, 52",188,"€ 1554,9479"
+"Road-250 Black, 58",148,"€ 1554,9479"
+"Road-250 Red, 58",227,"€ 1554,9479"
+"Road-250 Red, 44",163,"€ 1518,7864"
+"Road-250 Red, 48",185,"€ 1518,7864"
+"Road-250 Red, 52",148,"€ 1518,7864"
+"Touring-1000 Blue, 46",185,"€ 1481,9379"
+"Touring-1000 Blue, 50",148,"€ 1481,9379"
+"Touring-1000 Blue, 54",133,"€ 1481,9379"
+"Touring-1000 Blue, 60",129,"€ 1481,9379"
+"Touring-1000 Yellow, 46",148,"€ 1481,9379"
+"Touring-1000 Yellow, 50",137,"€ 1481,9379"
+"Touring-1000 Yellow, 54",75,"€ 1481,9379"
+"Touring-1000 Yellow, 60",151,"€ 1481,9379"
+"Mountain-200 Silver, 38",137,"€ 1265,6195"
+"Mountain-200 Silver, 42",223,"€ 1265,6195"
+"Mountain-200 Silver, 46",140,"€ 1265,6195"
+"Mountain-200 Black, 38",188,"€ 1251,9813"
+"Mountain-200 Black, 42",148,"€ 1251,9813"
+"Mountain-200 Black, 46",137,"€ 1251,9813"
+"Road-350-W Yellow, 40",185,"€ 1082,51"
+"Road-350-W Yellow, 42",148,"€ 1082,51"
+"Road-350-W Yellow, 44",133,"€ 1082,51"
+"Road-350-W Yellow, 48",227,"€ 1082,51"
+"HL Road Frame - Black, 58",,"€ 1059,31"
+"HL Road Frame - Red, 58",,"€ 1059,31"
+"Road-450 Red, 44",129,"€ 884,7083"
+"Road-450 Red, 48",134,"€ 884,7083"
+"Road-450 Red, 52",165,"€ 884,7083"
+"Road-450 Red, 58",148,"€ 884,7083"
+"Road-450 Red, 60",137,"€ 884,7083"
+"HL Road Frame - Black, 44",,"€ 868,6342"
+"HL Road Frame - Black, 48",,"€ 868,6342"
+"HL Road Frame - Black, 52",,"€ 868,6342"
+"HL Road Frame - Black, 62",,"€ 868,6342"
+"HL Road Frame - Red, 44",,"€ 868,6342"
+"HL Road Frame - Red, 48",,"€ 868,6342"
+"HL Road Frame - Red, 52",,"€ 868,6342"
+"HL Road Frame - Red, 56",,"€ 868,6342"
+"HL Road Frame - Red, 62",,"€ 868,6342"
+"Touring-2000 Blue, 46",133,"€ 755,1508"
+"Touring-2000 Blue, 50",227,"€ 755,1508"
+"Touring-2000 Blue, 54",129,"€ 755,1508"
+"Touring-2000 Blue, 60",165,"€ 755,1508"
+"HL Mountain Frame - Silver, 38",738,"€ 747,2002"
+"HL Mountain Frame - Silver, 42",,"€ 747,2002"
+"HL Mountain Frame - Silver, 46",,"€ 747,2002"
+"HL Mountain Frame - Black, 38",834,"€ 739,041"
+"HL Mountain Frame - Black, 42",,"€ 739,041"
+"HL Mountain Frame - Black, 46",,"€ 739,041"
+"Road-550-W Yellow, 38",148,"€ 713,0798"
+"Road-550-W Yellow, 40",133,"€ 713,0798"
+"Road-550-W Yellow, 42",227,"€ 713,0798"
+"Road-550-W Yellow, 44",129,"€ 713,0798"
+"Road-550-W Yellow, 48",134,"€ 713,0798"
+"HL Mountain Frame - Silver, 44",,"€ 706,811"
+"HL Mountain Frame - Silver, 48",,"€ 706,811"
+"HL Mountain Frame - Black, 44",,"€ 699,0928"
+"HL Mountain Frame - Black, 48",,"€ 699,0928"
+"HL Touring Frame - Blue, 46",,"€ 601,7437"
+"HL Touring Frame - Blue, 50",,"€ 601,7437"
+"HL Touring Frame - Blue, 54",,"€ 601,7437"
+"HL Touring Frame - Blue, 60",,"€ 601,7437"
+"HL Touring Frame - Yellow, 46",,"€ 601,7437"
+"HL Touring Frame - Yellow, 50",,"€ 601,7437"
+"HL Touring Frame - Yellow, 54",,"€ 601,7437"
+"HL Touring Frame - Yellow, 60",,"€ 601,7437"
+"Mountain-300 Black, 38",137,"€ 598,4354"
+"Mountain-300 Black, 40",223,"€ 598,4354"
+"Mountain-300 Black, 44",140,"€ 598,4354"
+"Mountain-300 Black, 48",128,"€ 598,4354"
+"Road-650 Black, 44",148,"€ 486,7066"
+"Road-650 Black, 48",133,"€ 486,7066"
+"Road-650 Black, 52",227,"€ 486,7066"
+"Road-650 Black, 58",134,"€ 486,7066"
+"Road-650 Black, 60",165,"€ 486,7066"
+"Road-650 Black, 62",188,"€ 486,7066"
+"Road-650 Red, 44",137,"€ 486,7066"
+"Road-650 Red, 48",223,"€ 486,7066"
+"Road-650 Red, 52",140,"€ 486,7066"
+"Road-650 Red, 58",163,"€ 486,7066"
+"Road-650 Red, 60",185,"€ 486,7066"
+"Road-650 Red, 62",148,"€ 486,7066"
+"Touring-3000 Blue, 44",163,"€ 461,4448"
+"Touring-3000 Blue, 50",164,"€ 461,4448"
+"Touring-3000 Blue, 54",163,"€ 461,4448"
+"Touring-3000 Blue, 58",204,"€ 461,4448"
+"Touring-3000 Blue, 62",159,"€ 461,4448"
+"Touring-3000 Yellow, 44",168,"€ 461,4448"
+"Touring-3000 Yellow, 50",174,"€ 461,4448"
+"Touring-3000 Yellow, 54",162,"€ 461,4448"
+"Touring-3000 Yellow, 58",197,"€ 461,4448"
+"Touring-3000 Yellow, 62",163,"€ 461,4448"
+"Mountain-400-W Silver, 38",150,"€ 419,7784"
+"Mountain-400-W Silver, 40",153,"€ 419,7784"
+"Mountain-400-W Silver, 42",154,"€ 419,7784"
+"Mountain-400-W Silver, 46",164,"€ 419,7784"
+"ML Road Frame-W - Yellow, 38",796,"€ 360,9428"
+"ML Road Frame-W - Yellow, 40",,"€ 360,9428"
+"ML Road Frame-W - Yellow, 42",,"€ 360,9428"
+"ML Road Frame-W - Yellow, 44",,"€ 360,9428"
+"ML Road Frame-W - Yellow, 48",,"€ 360,9428"
+"ML Road Frame - Red, 44",,"€ 352,1394"
+"ML Road Frame - Red, 48",,"€ 352,1394"
+"ML Road Frame - Red, 52",,"€ 352,1394"
+"ML Road Frame - Red, 58",,"€ 352,1394"
+"ML Road Frame - Red, 60",,"€ 352,1394"
+"Road-750 Black, 44",153,"€ 343,6496"
+"Road-750 Black, 48",155,"€ 343,6496"
+"Road-750 Black, 52",194,"€ 343,6496"
+"Road-750 Black, 58",153,"€ 343,6496"
+"Mountain-500 Silver, 40",154,"€ 308,2179"
+"Mountain-500 Silver, 42",164,"€ 308,2179"
+"Mountain-500 Silver, 44",153,"€ 308,2179"
+"Mountain-500 Silver, 48",155,"€ 308,2179"
+"Mountain-500 Silver, 52",194,"€ 308,2179"
+"Mountain-500 Black, 40",150,"€ 294,5797"
+"Mountain-500 Black, 42",153,"€ 294,5797"
+"Mountain-500 Black, 44",154,"€ 294,5797"
+"Mountain-500 Black, 48",164,"€ 294,5797"
+"Mountain-500 Black, 52",153,"€ 294,5797"
+"LL Road Frame - Black, 44",,"€ 204,6251"
+"LL Road Frame - Black, 48",,"€ 204,6251"
+"LL Road Frame - Black, 52",,"€ 204,6251"
+"LL Road Frame - Black, 58",,"€ 204,6251"
+"LL Road Frame - Black, 60",,"€ 204,6251"
+"LL Road Frame - Black, 62",,"€ 204,6251"
+"LL Touring Frame - Blue, 44",,"€ 199,8519"
+"LL Touring Frame - Blue, 50",,"€ 199,8519"
+"LL Touring Frame - Blue, 54",,"€ 199,8519"
+"LL Touring Frame - Blue, 58",,"€ 199,8519"
+"LL Touring Frame - Blue, 62",,"€ 199,8519"
+"LL Touring Frame - Yellow, 44",,"€ 199,8519"
+"LL Touring Frame - Yellow, 50",,"€ 199,8519"
+"LL Touring Frame - Yellow, 54",,"€ 199,8519"
+"LL Touring Frame - Yellow, 58",,"€ 199,8519"
+"LL Touring Frame - Yellow, 62",,"€ 199,8519"
+"ML Mountain Frame-W - Silver, 38",826,"€ 199,3757"
+"ML Mountain Frame-W - Silver, 40",,"€ 199,3757"
+"ML Mountain Frame-W - Silver, 42",,"€ 199,3757"
+"ML Mountain Frame-W - Silver, 46",,"€ 199,3757"
+"LL Road Frame - Red, 44",,"€ 187,1571"
+"LL Road Frame - Red, 48",,"€ 187,1571"
+"LL Road Frame - Red, 52",,"€ 187,1571"
+"LL Road Frame - Red, 58",,"€ 187,1571"
+"LL Road Frame - Red, 60",,"€ 187,1571"
+"LL Road Frame - Red, 62",,"€ 187,1571"
+"ML Mountain Frame - Black, 38",767,"€ 185,8193"
+"ML Mountain Frame - Black, 40",,"€ 185,8193"
+"ML Mountain Frame - Black, 44",,"€ 185,8193"
+"ML Mountain Frame - Black, 48",,"€ 185,8193"
+HL Crankset,923,"€ 179,8156"
+HL Road Rear Wheel,716,"€ 158,5346"
+HL Road Front Wheel,678,"€ 146,5466"
+HL Mountain Seat Assembly,807,"€ 145,87"
+HL Road Seat Assembly,821,"€ 145,87"
+HL Touring Seat Assembly,836,"€ 145,87"
+HL Mountain Rear Wheel,783,"€ 145,2835"
+"LL Mountain Frame - Silver, 40",682,"€ 144,5938"
+"LL Mountain Frame - Silver, 42",,"€ 144,5938"
+"LL Mountain Frame - Silver, 44",,"€ 144,5938"
+"LL Mountain Frame - Silver, 48",,"€ 144,5938"
+"LL Mountain Frame - Silver, 52",,"€ 144,5938"
+"LL Mountain Frame - Black, 40",719,"€ 136,785"
+"LL Mountain Frame - Black, 42",,"€ 136,785"
+"LL Mountain Frame - Black, 44",,"€ 136,785"
+"LL Mountain Frame - Black, 48",,"€ 136,785"
+"LL Mountain Frame - Black, 52",,"€ 136,785"
+HL Mountain Front Wheel,831,"€ 133,2955"
+ML Road Rear Wheel,837,"€ 122,2709"
+ML Crankset,905,"€ 113,8816"
+ML Road Front Wheel,793,"€ 110,2829"
+ML Mountain Seat Assembly,802,"€ 108,99"
+ML Road Seat Assembly,816,"€ 108,99"
+ML Touring Seat Assembly,831,"€ 108,99"
+Touring Rear Wheel,741,"€ 108,7844"
+ML Mountain Rear Wheel,812,"€ 104,7951"
+HL Fork,901,"€ 101,8936"
+LL Mountain Seat Assembly,797,"€ 98,77"
+LL Road Seat Assembly,812,"€ 98,77"
+LL Touring Seat Assembly,826,"€ 98,77"
+Touring Front Wheel,736,"€ 96,7964"
+ML Mountain Front Wheel,818,"€ 92,8071"
+LL Crankset,885,"€ 77,9176"
+ML Fork,882,"€ 77,9176"
+LL Fork,863,"€ 65,8097"
+All-Purpose Bike Stand,144,"€ 59,466"
+HL Headset,782,"€ 55,3801"
+HL Bottom Bracket,970,"€ 53,9416"
+Rear Derailleur,847,"€ 53,9282"
+HL Mountain Handlebars,840,"€ 53,3999"
+HL Road Handlebars,811,"€ 53,3999"
+"Touring-Panniers, Large",72,"€ 51,5625"
+LL Road Rear Wheel,799,"€ 49,9789"
+Front Brakes,767,"€ 47,286"
+Rear Brakes,723,"€ 47,286"
+ML Headset,772,"€ 45,4168"
+ML Bottom Bracket,816,"€ 44,9506"
+Hitch Rack - 4-Bike,0,"€ 44,88"
+"Short-Sleeve Classic Jersey, L",36,"€ 41,5723"
+"Short-Sleeve Classic Jersey, M",0,"€ 41,5723"
+"Short-Sleeve Classic Jersey, S",324,"€ 41,5723"
+"Short-Sleeve Classic Jersey, XL",72,"€ 41,5723"
+HL Touring Handlebars,792,"€ 40,6571"
+Front Derailleur,853,"€ 40,6216"
+LL Mountain Rear Wheel,681,"€ 38,9588"
+"Long-Sleeve Logo Jersey, L",216,"€ 38,4923"
+"Long-Sleeve Logo Jersey, M",180,"€ 38,4923"
+"Long-Sleeve Logo Jersey, S",144,"€ 38,4923"
+"Long-Sleeve Logo Jersey, XL",252,"€ 38,4923"
+LL Road Front Wheel,888,"€ 37,9909"
+"Men's Bib-Shorts, L",144,"€ 37,1209"
+"Men's Bib-Shorts, M",108,"€ 37,1209"
+"Men's Bib-Shorts, S",72,"€ 37,1209"
+HL Mountain Pedal,503,"€ 35,9596"
+HL Road Pedal,906,"€ 35,9596"
+Touring Pedal,885,"€ 35,9596"
+"Women's Tights, L",36,"€ 30,9334"
+"Women's Tights, M",0,"€ 30,9334"
+"Women's Tights, S",324,"€ 30,9334"
+ML Mountain Pedal,507,"€ 27,568"
+ML Road Pedal,494,"€ 27,568"
+ML Mountain Handlebars,850,"€ 27,4925"
+ML Road Handlebars,822,"€ 27,4925"
+LL Mountain Front Wheel,722,"€ 26,9708"
+"Women's Mountain Shorts, L",288,"€ 26,1763"
+"Women's Mountain Shorts, M",252,"€ 26,1763"
+"Women's Mountain Shorts, S",216,"€ 26,1763"
+"Men's Sports Shorts, L",144,"€ 24,7459"
+"Men's Sports Shorts, M",108,"€ 24,7459"
+"Men's Sports Shorts, S",288,"€ 24,7459"
+"Men's Sports Shorts, XL",180,"€ 24,7459"
+LL Bottom Bracket,814,"€ 23,9716"
+"Classic Vest, L",252,"€ 23,749"
+"Classic Vest, M",216,"€ 23,749"
+"Classic Vest, S",180,"€ 23,749"
+HL Mountain Seat/Saddle,355,"€ 23,3722"
+HL Road Seat/Saddle,467,"€ 23,3722"
+HL Touring Seat/Saddle,989,"€ 23,3722"
+Hydration Pack - 70 oz.,108,"€ 20,5663"
+LL Touring Handlebars,802,"€ 20,464"
+LL Mountain Handlebars,859,"€ 19,7758"
+LL Road Handlebars,831,"€ 19,7758"
+Headlights - Weatherproof,216,"€ 18,5584"
+LL Mountain Pedal,512,"€ 17,9776"
+LL Road Pedal,498,"€ 17,9776"
+ML Mountain Seat/Saddle,422,"€ 17,3782"
+ML Road Seat/Saddle,901,"€ 17,3782"
+ML Touring Seat/Saddle,402,"€ 17,3782"
+"Full-Finger Gloves, L",144,"€ 15,6709"
+"Full-Finger Gloves, M",108,"€ 15,6709"
+"Full-Finger Gloves, S",72,"€ 15,6709"
+LL Headset,761,"€ 15,1848"
+Headlights - Dual-Beam,180,"€ 14,4334"
+HL Mountain Tire,499,"€ 13,09"
+"Sport-100 Helmet, Black",324,"€ 13,0863"
+"Sport-100 Helmet, Blue",216,"€ 13,0863"
+"Sport-100 Helmet, Red",288,"€ 13,0863"
+HL Road Tire,527,"€ 12,1924"
+LL Mountain Seat/Saddle,809,"€ 12,0413"
+LL Road Seat/Saddle,906,"€ 12,0413"
+LL Touring Seat/Saddle,801,"€ 12,0413"
+ML Mountain Tire,669,"€ 11,2163"
+Touring Tire,482,"€ 10,8423"
+Cable Lock,252,"€ 10,3125"
+Mountain Pump,324,"€ 10,3084"
+LL Mountain Tire,609,"€ 9,3463"
+ML Road Tire,574,"€ 9,3463"
+"Half-Finger Gloves, L",36,"€ 9,1593"
+"Half-Finger Gloves, M",0,"€ 9,1593"
+"Half-Finger Gloves, S",324,"€ 9,1593"
+Chain,589,"€ 8,9866"
+Minipump,288,"€ 8,2459"
+Fender Set - Mountain,108,"€ 8,2205"
+LL Road Tire,488,"€ 8,0373"
+AWC Logo Cap,288,"€ 6,9223"
+Taillights - Battery-Powered,144,"€ 5,7709"
+Mountain Bottle Cage,288,"€ 3,7363"
+"Mountain Bike Socks, L",216,"€ 3,3963"
+"Mountain Bike Socks, M",180,"€ 3,3963"
+"Racing Socks, L",288,"€ 3,3623"
+"Racing Socks, M",252,"€ 3,3623"
+Road Bottle Cage,324,"€ 3,3623"
+Bike Wash - Dissolver,36,"€ 2,9733"
+Mountain Tire Tube,529,"€ 1,8663"
+Touring Tire Tube,502,"€ 1,8663"
+Water Bottle - 30 oz.,252,"€ 1,8663"
+Road Tire Tube,505,"€ 1,4923"
+Patch Kit/8 Patches,180,"€ 0,8565"
+Adjustable Race,1085,€ 0
+BB Ball Bearing,1352,€ 0
+Bearing Ball,1109,€ 0
+Blade,1361,€ 0
+Chain Stays,1629,€ 0
+Chainring,1684,€ 0
+Chainring Bolts,1136,€ 0
+Chainring Nut,1750,€ 0
+Cone-Shaped Race,970,€ 0
+Crown Race,1684,€ 0
+Cup-Shaped Race,1084,€ 0
+Decal 1,1750,€ 0
+Decal 2,1684,€ 0
+Down Tube,1364,€ 0
+External Lock Washer 1,1046,€ 0
+External Lock Washer 2,1614,€ 0
+External Lock Washer 3,981,€ 0
+External Lock Washer 4,972,€ 0
+External Lock Washer 5,952,€ 0
+External Lock Washer 6,1057,€ 0
+External Lock Washer 7,1672,€ 0
+External Lock Washer 8,1037,€ 0
+External Lock Washer 9,963,€ 0
+Flat Washer 1,1103,€ 0
+Flat Washer 2,1673,€ 0
+Flat Washer 3,1702,€ 0
+Flat Washer 4,936,€ 0
+Flat Washer 5,911,€ 0
+Flat Washer 6,1093,€ 0
+Flat Washer 7,926,€ 0
+Flat Washer 8,896,€ 0
+Flat Washer 9,1072,€ 0
+Fork Crown,1341,€ 0
+Fork End,1405,€ 0
+Freewheel,844,€ 0
+Front Derailleur Cage,605,€ 0
+Front Derailleur Linkage,773,€ 0
+Guide Pulley,822,€ 0
+Handlebar Tube,1326,€ 0
+Head Tube,1308,€ 0
+Headset Ball Bearings,1322,€ 0
+Hex Nut 1,725,€ 0
+Hex Nut 10,1888,€ 0
+Hex Nut 11,798,€ 0
+Hex Nut 12,820,€ 0
+Hex Nut 13,1778,€ 0
+Hex Nut 14,1880,€ 0
+Hex Nut 15,911,€ 0
+Hex Nut 16,941,€ 0
+Hex Nut 17,926,€ 0
+Hex Nut 18,1824,€ 0
+Hex Nut 19,1652,€ 0
+Hex Nut 2,1808,€ 0
+Hex Nut 20,798,€ 0
+Hex Nut 21,809,€ 0
+Hex Nut 22,808,€ 0
+Hex Nut 23,1901,€ 0
+Hex Nut 3,818,€ 0
+Hex Nut 4,784,€ 0
+Hex Nut 5,925,€ 0
+Hex Nut 6,1781,€ 0
+Hex Nut 7,1911,€ 0
+Hex Nut 8,770,€ 0
+Hex Nut 9,789,€ 0
+HL Crankarm,797,€ 0
+HL Grip Tape,693,€ 0
+HL Hub,797,€ 0
+HL Mountain Rim,1247,€ 0
+HL Nipple,922,€ 0
+HL Road Rim,615,€ 0
+HL Shell,1211,€ 0
+HL Spindle/Axle,459,€ 0
+Internal Lock Washer 1,914,€ 0
+Internal Lock Washer 10,919,€ 0
+Internal Lock Washer 2,905,€ 0
+Internal Lock Washer 3,776,€ 0
+Internal Lock Washer 4,1703,€ 0
+Internal Lock Washer 5,1104,€ 0
+Internal Lock Washer 6,1715,€ 0
+Internal Lock Washer 7,1090,€ 0
+Internal Lock Washer 8,909,€ 0
+Internal Lock Washer 9,1119,€ 0
+Keyed Washer,990,€ 0
+LL Crankarm,593,€ 0
+LL Grip Tape,780,€ 0
+LL Hub,790,€ 0
+LL Mountain Rim,1215,€ 0
+LL Nipple,1780,€ 0
+LL Road Rim,722,€ 0
+LL Shell,1263,€ 0
+LL Spindle/Axle,512,€ 0
+Lock Nut 1,1560,€ 0
+Lock Nut 10,1546,€ 0
+Lock Nut 11,1556,€ 0
+Lock Nut 12,1589,€ 0
+Lock Nut 13,1575,€ 0
+Lock Nut 14,1604,€ 0
+Lock Nut 15,1613,€ 0
+Lock Nut 16,1690,€ 0
+Lock Nut 17,1676,€ 0
+Lock Nut 18,1642,€ 0
+Lock Nut 19,1632,€ 0
+Lock Nut 2,1565,€ 0
+Lock Nut 20,1575,€ 0
+Lock Nut 21,1584,€ 0
+Lock Nut 22,1618,€ 0
+Lock Nut 23,1604,€ 0
+Lock Nut 3,1594,€ 0
+Lock Nut 4,1623,€ 0
+Lock Nut 5,1671,€ 0
+Lock Nut 6,1680,€ 0
+Lock Nut 7,1661,€ 0
+Lock Nut 8,1647,€ 0
+Lock Nut 9,1632,€ 0
+Lock Ring,1652,€ 0
+Lock Washer 1,1714,€ 0
+Lock Washer 10,1695,€ 0
+Lock Washer 11,1743,€ 0
+Lock Washer 12,1724,€ 0
+Lock Washer 13,1704,€ 0
+Lock Washer 2,1728,€ 0
+Lock Washer 3,1738,€ 0
+Lock Washer 4,1685,€ 0
+Lock Washer 5,1690,€ 0
+Lock Washer 6,1700,€ 0
+Lock Washer 7,1719,€ 0
+Lock Washer 8,1709,€ 0
+Lock Washer 9,1733,€ 0
+Lower Head Race,701,€ 0
+Metal Angle,1083,€ 0
+Metal Bar 1,1079,€ 0
+Metal Bar 2,1687,€ 0
+Metal Plate 1,1661,€ 0
+Metal Plate 2,1029,€ 0
+Metal Plate 3,997,€ 0
+Metal Sheet 1,935,€ 0
+Metal Sheet 2,924,€ 0
+Metal Sheet 3,1681,€ 0
+Metal Sheet 4,924,€ 0
+Metal Sheet 5,1661,€ 0
+Metal Sheet 6,992,€ 0
+Metal Sheet 7,997,€ 0
+Metal Tread Plate,1837,€ 0
+ML Crankarm,439,€ 0
+ML Grip Tape,736,€ 0
+ML Mountain Rim,1231,€ 0
+ML Road Rim,740,€ 0
+Mountain End Caps,1629,€ 0
+Paint - Black,47,€ 0
+Paint - Blue,109,€ 0
+Paint - Red,93,€ 0
+Paint - Silver,65,€ 0
+Paint - Yellow,99,€ 0
+Pinch Bolt,973,€ 0
+Rear Derailleur Cage,421,€ 0
+Reflector,827,€ 0
+Road End Caps,1601,€ 0
+Seat Lug,1653,€ 0
+Seat Post,780,€ 0
+Seat Stays,1257,€ 0
+Seat Tube,831,€ 0
+Spokes,1590,€ 0
+Steerer,801,€ 0
+Stem,796,€ 0
+Tension Pulley,836,€ 0
+Thin-Jam Hex Nut 1,1631,€ 0
+Thin-Jam Hex Nut 10,1084,€ 0
+Thin-Jam Hex Nut 11,916,€ 0
+Thin-Jam Hex Nut 12,906,€ 0
+Thin-Jam Hex Nut 13,1084,€ 0
+Thin-Jam Hex Nut 14,883,€ 0
+Thin-Jam Hex Nut 15,1761,€ 0
+Thin-Jam Hex Nut 16,1052,€ 0
+Thin-Jam Hex Nut 2,1026,€ 0
+Thin-Jam Hex Nut 3,1901,€ 0
+Thin-Jam Hex Nut 4,1103,€ 0
+Thin-Jam Hex Nut 5,1721,€ 0
+Thin-Jam Hex Nut 6,1029,€ 0
+Thin-Jam Hex Nut 7,1781,€ 0
+Thin-Jam Hex Nut 8,897,€ 0
+Thin-Jam Hex Nut 9,1103,€ 0
+Thin-Jam Lock Nut 1,1623,€ 0
+Thin-Jam Lock Nut 10,1628,€ 0
+Thin-Jam Lock Nut 11,1661,€ 0
+Thin-Jam Lock Nut 12,1652,€ 0
+Thin-Jam Lock Nut 13,1613,€ 0
+Thin-Jam Lock Nut 14,1623,€ 0
+Thin-Jam Lock Nut 15,1613,€ 0
+Thin-Jam Lock Nut 16,1608,€ 0
+Thin-Jam Lock Nut 2,1618,€ 0
+Thin-Jam Lock Nut 3,1594,€ 0
+Thin-Jam Lock Nut 4,1604,€ 0
+Thin-Jam Lock Nut 5,1604,€ 0
+Thin-Jam Lock Nut 6,1599,€ 0
+Thin-Jam Lock Nut 7,1632,€ 0
+Thin-Jam Lock Nut 8,1642,€ 0
+Thin-Jam Lock Nut 9,1632,€ 0
+Top Tube,657,€ 0
+Touring End Caps,1571,€ 0
+Touring Rim,1364,€ 0

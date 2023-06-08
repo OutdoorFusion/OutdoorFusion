@@ -29,14 +29,23 @@
                 <a href="{{ url_for('voorraad') }}">Ga terug</a>
             </div>
     <main>
-        <div class="chart_card">    
-           <h2>Northwind</h2>
+        <div class="chart_card">
+            <h2>Northwind</h2>
+            <h2>Inzicht op basis van de eenheidsprijs en de hoeveelheid in voorraad</h2>
+            <div id='chart2' class='chart2'></div>
+            <div id='chart1' class='chart1'></div>
         </div>
         <div class="chart_card">
             <h2>A en C</h2>
+            <h2>Inzicht op basis van de eenheidsprijs en de hoeveelheid in voorraad</h2>
+            <div id='chart3' class='chart3'></div>
+            <div id='chart4' class='chart4'></div>
         </div>
          <div class="chart_card">
             <h2>Adventure</h2>
+            <div id='chart5' class='chart5'></div>
+            <div id='chart6' class='chart6'></div>
+        </div>
     </main>
     <footer>
         <nav class="bottomNav">
@@ -49,4 +58,66 @@
         </nav>
     </footer>
 </body>
+
+<script type='text/javascript'>
+    var graphs = {{northwind_category_omzet | safe}};
+    var graphs2 = {{northwind_omzet | safe}};
+    var graphs3 = {{aenc_omzet | safe}};
+    var graphs4 = {{aenc_category_omzet | safe}};
+    var graphs5 = {{adventure_omzet | safe}};
+    var graphs6 = {{adventure_category_omzet | safe}};
+    
+    
+    Plotly.plot('chart1',graphs,{});
+    Plotly.plot('chart2',graphs2,{});
+    Plotly.plot('chart3',graphs3,{});
+    Plotly.plot('chart4',graphs4,{});
+    Plotly.plot('chart5',graphs5,{});
+    Plotly.plot('chart6',graphs6,{});
+
+
+
+  </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Function to fetch the chart data from the server for a specific category
+        function fetchChartData(category) {
+            const url = '/chartProductQuantity?type=line';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const chartData = data.data.filter(d => d.name === category);
+                    const chartLayout = data.layout;
+
+                    const chartContainer = document.createElement('div');
+                    chartContainer.setAttribute('id', `chart-container-${category}`);
+                    document.body.appendChild(chartContainer);
+
+                    Plotly.newPlot(`chart-container-${category}`, chartData, chartLayout);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function to fetch and display the chart data for each category
+        const categories = ['Beverages', 'Condiments', 'Confections', 'Dairy Products', 'Grains/Cereals', 'Meat/Poultry', 'Produce', 'Seafood'];
+        categories.forEach(category => {
+            fetchChartData(category);
+        });
+    </script> -->

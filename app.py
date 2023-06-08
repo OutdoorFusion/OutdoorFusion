@@ -15,13 +15,23 @@ data = pd.read_csv("static\data\Sales.csv")
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_path = os.path.join(current_dir, 'static/data', 'Sales.csv')
+
 voorraad_path = os.path.join(current_dir, 'static/data', 'northwind-product.csv')
 ac_path = os.path.join(current_dir, 'static/data', 'aenc-productenvoorraad.csv')
 adventure_path = os.path.join(current_dir, 'static/data', 'adventureworks-product.csv')
 adventure_category_path = os.path.join(current_dir, 'static/data', 'Som van Quantity per categorieName.csv')
-northwind_category_path = os.path.join(current_dir, 'static/data', 'Som van waarde per CategoryName-northwind.csv')
 aenc_category_path = os.path.join('static/data', 'Som van waarde per Category-aenc.csv')
 
+aenc_category_omzet_path = os.path.join('static/data', 'Som_van_omzet_per_Category_aenc.csv')
+aenc_omzet_path = os.path.join('static/data', 'Som-van-omzet-per-name_aenc.csv')
+
+
+northwind_category_path = os.path.join(current_dir, 'static/data', 'Som_van_UnitsInStock_per_CategoryName_northwind.csv')
+northwind_omzet_path = os.path.join(current_dir, 'static/data', 'Som_van_waarde_per_ProductName_northwind.csv')
+northwind_category_omzet_path = os.path.join(current_dir, 'static/data', 'Som van waarde per CategoryName-northwind.csv')
+
+adventure_omzet_path =  os.path.join(current_dir, 'static/data', 'Som van StandardCost en Som van Quantity per Name-ad.csv')
+adventure_category_omzet_path = os.path.join(current_dir, 'static/data', 'Som van StandardCost en Som van Quantity perCategory_ad.csv')
 
 klanten_countryRegion_path = os.path.join(current_dir, 'static/data', 'Totaal van TerritoryID per CountryRegionCodePB.csv')
 klanten_age_per_group_path = os.path.join(current_dir, 'static/data', 'Totaal van Customer_Age per Age_GroupPB.csv')
@@ -70,7 +80,56 @@ def klanten():
 
 @app.route('/voorraadbeheer_voorspelling')
 def voorraadVoorspelling():
-    return render_template('voorraadbeheer_voorspelling.html')
+
+    
+    df1 = pd.read_csv(northwind_category_omzet_path)
+    df2 = pd.read_csv(northwind_omzet_path)
+    df3 = pd.read_csv(aenc_omzet_path)
+    df4 = pd.read_csv(aenc_category_omzet_path)
+    df5 = pd.read_csv(adventure_omzet_path)
+    df6 = pd.read_csv(adventure_category_omzet_path)
+
+    df1["Som van waarde"] = df1["Som van waarde"].str.replace("€", "").str.replace(",", "").astype(float)
+    df2["Som van omzet"] = df2["Som van omzet"].str.replace("€", "").str.replace(",", "").astype(float)
+    df3["Som van omzet"] = df3["Som van omzet"].str.replace("€", "").str.replace(",", "").astype(float)
+    df4["Som van omzet"] = df4["Som van omzet"].str.replace("€", "").str.replace(",", "").astype(float)
+    df5["Som van Quantity"] = pd.to_numeric(df5["Som van Quantity"], errors="coerce")
+    df5["Som van StandardCost"] = pd.to_numeric(df5["Som van StandardCost"], errors="coerce")
+    df6["Som van Quantity"] = pd.to_numeric(df6["Som van Quantity"], errors="coerce")
+    df6["Som van StandardCost"] = pd.to_numeric(df6["Som van StandardCost"], errors="coerce")
+
+    df5 = df5.groupby("Name").sum().reset_index()
+    df6 = df6.groupby("Name").sum().reset_index()
+
+    df5.rename(columns={"Name": "Name", "Som van Quantity": "Quantity", "Som van StandardCost": "StandardCost"}, inplace=True)
+    df6.rename(columns={"Name": "Name", "Som van Quantity": "Quantity", "Som van StandardCost": "StandardCost"}, inplace=True)
+
+    fig1 = px.bar(df1, x='CategoryName', y='Som van waarde')
+    fig2 = px.bar(df2, x='ProductName', y='Som van omzet')
+    fig3 = px.bar(df3, x='name', y='Som van omzet')
+    fig4 = px.bar(df4, x='Category', y='Som van omzet')
+
+    fig1.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+    fig2.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+    fig3.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+    fig4.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+
+    df5["Quantity"].fillna(0, inplace=True)
+    df5["StandardCost"].fillna(0, inplace=True)
+    fig5 = px.bar(df5, x="Name", y=["Quantity", "StandardCost"], barmode="group")
+    fig6 = px.bar(df6, x="Name", y=["Quantity", "StandardCost"], barmode="group")
+
+    fig5.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+    fig6.update_layout(yaxis_tickprefix="€", yaxis_ticksuffix="")
+
+    northwind_category_omzet = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
+    northwind_omzet = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+    aenc_omzet = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    aenc_category_omzet = json.dumps(fig4, cls=plotly.utils.PlotlyJSONEncoder)
+    adventure_omzet = json.dumps(fig5, cls=plotly.utils.PlotlyJSONEncoder)
+    adventure_category_omzet = json.dumps(fig6, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('voorraadbeheer_voorspelling.html', northwind_category_omzet=northwind_category_omzet, northwind_omzet=northwind_omzet, aenc_omzet=aenc_omzet, aenc_category_omzet=aenc_category_omzet, adventure_omzet=adventure_omzet, adventure_category_omzet=adventure_category_omzet)
 
 @app.route('/voorraadbeheer')
 def voorraad():
@@ -81,12 +140,11 @@ def voorraad():
     df4 = pd.read_csv(northwind_category_path)
     df5 = pd.read_csv(aenc_category_path)
     df6 = pd.read_csv(adventure_category_path)
-
     
     fig = px.bar(df, x='ProductName', y='Som van UnitsInStock')
     fig2 = px.bar(df2, x='name', y='Totaal van quantity')
     fig3 = px.bar(df3, x='Name', y='Som van Quantity')
-    fig4 = px.bar(df4, x='CategoryName', y='Som van waarde')
+    fig4 = px.bar(df4, x='CategoryName', y='Som van UnitsInStock')
     fig5 = px.bar(df5, x='Som van waarde', y='Category')
     fig6 = px.bar(df6, x='Name', y='Som van Quantity')
 
