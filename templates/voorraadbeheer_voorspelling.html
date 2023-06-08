@@ -16,13 +16,18 @@
         </div>
         <nav class="upperNav">
             <ul>
-                <li><a href="">AenC</a></li>
-                <li><a href="">AdventureWorks</a></li>
-                <li><a href="">Northwind</a></li>
+                <li><a href="{{ url_for('klanten') }}">Klantendashboard</a></li>
+                <li><a href="{{ url_for('verkoopprestaties') }}">Verkoopprestaties</a></li>
+                <li><a href="{{ url_for('voorraad') }}">Voorraadbeheer</a></li>
+                <li><a href="{{ url_for('feiten') }}">Feiten</a></li>
+                <li><a href="{{ url_for('voorraadVoorspelling') }}">Operationele efficientie</a></li>
             </ul>
         </nav>
     </header>
             <div class="blackBar"></div>
+            <div class="terug">    
+                <a href="{{ url_for('voorraad') }}">Ga terug</a>
+            </div>
     <main>
         <div class="chart_card">    
            <h2>Northwind</h2>
