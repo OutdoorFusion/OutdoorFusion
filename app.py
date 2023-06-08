@@ -201,7 +201,7 @@ def chartProductQuantity():
 
     if fig:
         graphJSON = fig.to_json()
-        return graphJSON
+        return graphJSONc  
     else:
         return jsonify(error='Invalid chart type')
 
